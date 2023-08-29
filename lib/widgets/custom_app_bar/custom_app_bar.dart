@@ -1,0 +1,190 @@
+import 'dart:convert';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:http/http.dart' as http;
+import 'package:LetsGo/globals.dart' as globals;
+import 'package:LetsGo/widgets/notification_badge.dart';
+
+import '../../constants/url.dart';
+import '../../database/db_provider.dart';
+import '../../theme/LetsGo_theme.dart';
+import '../../views/profil/profil_screen.dart';
+import '../loader/loader.dart';
+
+class CustomAppBar extends StatefulWidget {
+  const CustomAppBar({Key? key}) : super(key: key);
+
+  @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  int _totalNotifications = 0;
+  final requestBaseUrl = AppUrl.baseUrl;
+  final DatabaseProvider db = DatabaseProvider();
+  late Position currentposition;
+  dynamic _user;
+
+  @override
+  void initState() {
+    super.initState();
+    _totalNotifications = globals.dataNotification.length;
+    db.getUser().then((value) {
+      setState(() {
+        _user = value;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      leadingWidth: 100,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          InkWell(
+            onTap: _determinePosition,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(14.0)),
+              child: Container(
+                color: LetsGoTheme.lightPurple,
+                padding: const EdgeInsets.fromLTRB(0, 0, 18, 0),
+                height: MediaQuery.of(context).size.height * 0.055,
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: _determinePosition,
+                      icon: Image(
+                        image: const AssetImage(
+                            'assets/icons/icon/marker_solid.png'),
+                        width: MediaQuery.of(context).size.height * 0.025,
+                        color: LetsGoTheme.black,
+                      ),
+                    ),
+                    Text(
+                      globals.currentAddress ??
+                          '${globals.currentAddress.substring(0, 10)}...',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: LetsGoTheme.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+          // Your widgets here
+        ],
+      ),
+      actions: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            NotificationBadge(
+                icon: Icons.notifications,
+                totalNotifications: _totalNotifications),
+            Container(
+              padding: const EdgeInsets.fromLTRB(5, 0, 20, 0),
+              child: Material(
+                borderRadius: BorderRadius.circular(14.0),
+                color: LetsGoTheme.white,
+                child: InkWell(
+                  onTap: () {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProfilScreen()),
+                      );
+                    });
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(14.0),
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          '${Uri.parse(AppUrl.baseUrlImage)}/${_user['photo']}',
+                      width: 48,
+                      height: 48,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => const Loader(),
+                      errorWidget: (context, url, error) => const Image(image: NetworkImage('https://images.unsplash.com/photo-1600480505021-e9cfb05527f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2066&q=80'))),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        )
+      ],
+    );
+  }
+
+  Future _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      Fluttertoast.showToast(
+          msg: 'Veuillez activer votre service de localisation');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        Fluttertoast.showToast(
+            msg: 'Les autorisations de localisation sont refusées');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      Fluttertoast.showToast(
+          msg:
+              "Les autorisations de localisation sont refusées de manière permanente, nous ne pouvons pas demander d'autorisations.");
+    }
+
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+
+    try {
+      await placemarkFromCoordinates(position.latitude, position.longitude);
+
+      globals.latitude = position.latitude;
+      globals.longitude = position.longitude;
+
+      String url = '$requestBaseUrl/auth/localize';
+
+      final response = await http.post(Uri.parse(url), body: {
+        'latitude': '${position.latitude}',
+        'longitude': '${position.longitude}',
+        'userId': globals.userID,
+      });
+
+      setState(() {
+        currentposition = position;
+        globals.currentAddress = jsonDecode(response.body)['localisation'];
+      });
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+}

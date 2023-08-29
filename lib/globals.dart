@@ -1,0 +1,26 @@
+import 'dart:core';
+
+String currentAddress = 'Votre position';
+int nbAdult = 0;
+int nbChild = 0;
+var choiceTime;
+String stractivityNow = '';
+var AdultValue;
+int ChildValue = 0;
+DateTime slectedDate = DateTime.now();
+String responseReservationId = '';
+String guestId = '';
+int amount = 0;
+String paymentMethodId = '';
+bool createPayment = false;
+String phone = '';
+Map socketData = {};
+String userID = '';
+bool isvalidInputPhone = false;
+String activityId = '';
+String organisatorId = '';
+int nbReservation = 0;
+String userName= '';
+double latitude = 0.0;
+double  longitude = 0.0;
+List<dynamic> dataNotification = [];
