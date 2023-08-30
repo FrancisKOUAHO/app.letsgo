@@ -374,5 +374,9 @@ class FrenchStrings implements FlutterPwValidatorStrings {
   @override
   final String specialCharacters = '- Caractères spéciaux';
   @override
-  final String normalLetters = '- Caractères spéciaux';
+  final String normalLetters = '- Lettres normales';
+
+  @override
+  String get lowercaseLetters => '- Lettres minuscules';
 }
+
