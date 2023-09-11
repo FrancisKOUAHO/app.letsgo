@@ -210,7 +210,7 @@ class _PubTwoState extends State<PubTwo> {
 
   Future<dynamic> fetchData() async {
     String url =
-        '${AppUrl.baseUrl}/publications/pubTwo/d9ac964f-7654-4b8b-9f30-01471a09167b';
+        '${AppUrl.baseUrl}/publications/pubTwo/51bd7192-bbb5-434a-8252-60ac478ada40';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       return json.decode(response.body);

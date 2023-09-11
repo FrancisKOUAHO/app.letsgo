@@ -203,7 +203,7 @@ class _PubOneState extends State<PubOne> {
 
   Future<dynamic> fetchData() async {
     String url =
-        '${AppUrl.baseUrl}/publications/pubOne/23ad80cf-a798-40fa-82d1-2d788496e316';
+        '${AppUrl.baseUrl}/publications/pubOne/12a92268-aa5c-4f95-94ae-15b73071a169';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       return json.decode(response.body);

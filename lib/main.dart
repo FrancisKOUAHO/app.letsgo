@@ -18,8 +18,6 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:LetsGo/globals.dart' as globals;
 import 'package:http/http.dart' as http;
 
-import 'models/reservation.model.dart';
-
 IO.Socket socket = IO.io(AppUrl.baseUrlSocket,
     IO.OptionBuilder().setTransports(['websocket']).build());
 
