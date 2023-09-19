@@ -2,13 +2,11 @@ import 'dart:convert';
 
 import 'package:LetsGo/views/filter/filter_screen.dart';
 import 'package:LetsGo/widgets/home/pub_two.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:LetsGo/models/Category.model.dart';
 
 import '../../constants/url.dart';
-import '../../provider/auth_provider.dart';
 import '../../theme/LetsGo_theme.dart';
 import '../../widgets/custom_app_bar/custom_app_bar.dart';
 import '../../widgets/home/home_categories_filter.dart';
@@ -27,16 +25,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final AuthenticationProvider? user = AuthenticationProvider();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   Future<List<Category>> categoriesFuture = getCategoryList();
   dynamic getUser;
 
   @override
   void initState() {
     super.initState();
-    saveUserFirebase();
   }
 
   static Future<List<Category>> getCategoryList() async {
@@ -45,20 +39,6 @@ class _HomeState extends State<Home> {
     final response = await http.get(Uri.parse(url));
     final body = jsonDecode(response.body);
     return body.map<Category>(Category.fromJson).toList();
-  }
-
-  void saveUserFirebase() async {
-    String url = '${AppUrl.baseUrl}/auth/getAllUser';
-
-    final response = await http.get(Uri.parse(url));
-
-    final jsonResponse = jsonDecode(response.body);
-
-    if (jsonResponse.length > 0) {
-      jsonResponse.forEach((item) {
-        _firestore.collection('users').doc(item['id']).set(item);
-      });
-    }
   }
 
   @override
@@ -92,10 +72,10 @@ class _HomeState extends State<Home> {
                         bottomRight: Radius.circular(40),
                       ),
                     ),
-                    height: 550,
+                    height: 420,
                   ),
                   Container(
-                    height: 550,
+                    height: 420,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       gradient: LinearGradient(

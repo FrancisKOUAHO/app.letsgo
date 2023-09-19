@@ -25,10 +25,10 @@ class EventScreen extends StatefulWidget {
 }
 
 class _EventScreenState extends State<EventScreen> {
-  final Completer<GoogleMapController> _controllerMap = Completer<GoogleMapController>();
+  final Completer<GoogleMapController> _controllerMap =
+      Completer<GoogleMapController>();
   List<DateTime> isActiveDate = [];
   BitmapDescriptor mapMarker = BitmapDescriptor.defaultMarker;
-
 
   final DatePickerController _controller = DatePickerController();
   bool isLoading = false;
@@ -58,7 +58,6 @@ class _EventScreenState extends State<EventScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     SizeConfig().init(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -265,8 +264,7 @@ class _EventScreenState extends State<EventScreen> {
                                               widget.activity.latitude!,
                                               widget.activity.longitude!,
                                             ),
-                                            icon: mapMarker
-                                        ),
+                                            icon: mapMarker),
                                       },
                                       myLocationEnabled: false,
                                       myLocationButtonEnabled: false,
@@ -274,7 +272,8 @@ class _EventScreenState extends State<EventScreen> {
                                       zoomGesturesEnabled: true,
                                       zoomControlsEnabled: true,
                                       scrollGesturesEnabled: true,
-                                      onMapCreated: (GoogleMapController controller) {
+                                      onMapCreated:
+                                          (GoogleMapController controller) {
                                         _controllerMap.complete(controller);
                                       },
                                     ),
@@ -323,9 +322,6 @@ class _EventScreenState extends State<EventScreen> {
                                     style: LetsGoTheme.subTitle,
                                   ),
                                 ),
-                                Column(
-                                  children: const [],
-                                )
                               ],
                             ),
                             const SizedBox(height: 10),
@@ -342,7 +338,7 @@ class _EventScreenState extends State<EventScreen> {
                                 // New date selected
                                 setState(() {
                                   isLoading = true;
-                                  globals.slectedDate = date;
+                                  globals.selectedDate = date;
                                   Future.delayed(const Duration(seconds: 1),
                                       () {
                                     setState(() {
@@ -437,7 +433,7 @@ class _EventScreenState extends State<EventScreen> {
                                                 Padding(
                                                   padding:
                                                       const EdgeInsetsDirectional
-                                                              .fromSTEB(
+                                                          .fromSTEB(
                                                           0, 15, 0, 0),
                                                   child: Text(
                                                     widget.activity.name!,
@@ -452,7 +448,7 @@ class _EventScreenState extends State<EventScreen> {
                                                 Padding(
                                                   padding:
                                                       const EdgeInsetsDirectional
-                                                              .fromSTEB(
+                                                          .fromSTEB(
                                                           0, 10, 0, 10),
                                                   child: ExpandableText(
                                                     widget.activity
@@ -478,7 +474,7 @@ class _EventScreenState extends State<EventScreen> {
                                                 Padding(
                                                   padding:
                                                       const EdgeInsetsDirectional
-                                                              .fromSTEB(
+                                                          .fromSTEB(
                                                           0, 10, 0, 0),
                                                   child: Row(
                                                     mainAxisSize:
@@ -508,7 +504,7 @@ class _EventScreenState extends State<EventScreen> {
                                                           Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
-                                                                        .fromSTEB(
+                                                                    .fromSTEB(
                                                                     5, 0, 0, 0),
                                                             child: Text(
                                                               '${widget.activity.price} €',

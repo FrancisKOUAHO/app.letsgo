@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:LetsGo/views/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:LetsGo/views/login/sign_in.dart';
@@ -68,6 +69,6 @@ class DatabaseProvider extends ChangeNotifier {
     final value = await _pref;
 
     value.clear();
-    PageNavigator(ctx: context).nextPageOnly(page: const SignIn());
+    PageNavigator(ctx: context).nextPageOnly(page: const Home());
   }
 }

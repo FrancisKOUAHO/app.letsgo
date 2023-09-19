@@ -1,4 +1,3 @@
-import 'package:LetsGo/views/attendees/attendees.dart';
 import 'package:flutter/material.dart';
 import 'package:LetsGo/globals.dart' as globals;
 import 'package:LetsGo/views/payment/payment.dart';
@@ -77,42 +76,11 @@ class _SummaryState extends State<Summary> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Column(
-                      children: const [
+                    const Column(
+                      children: [
                         AttendeeAdultCard(),
                       ],
                     ),
-                    // const SizedBox(
-                    //   height: 20,
-                    // ),
-                    /*Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Billets enfants (x${globals.nbChild})',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                              child: Icon(
-                                Icons.escalator_warning,
-                                color: LetsGoTheme.main,
-                                size: 25.0,
-                              ),
-                            ),
-                          ],
-                        ),*/
-                    // const SizedBox(
-                    //   height: 10,
-                    // ),
-                    // Column(
-                    //   children: const [
-                    //     AttendeeChildCard(),
-                    //   ],
-                    // ),
                   ],
                 ),
                 // SizedBox(height: MediaQuery.of(context).size.height * 0.19),

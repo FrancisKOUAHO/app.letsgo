@@ -2,14 +2,10 @@ import 'dart:convert';
 
 import 'package:LetsGo/services/local_notification_service.dart';
 import 'package:LetsGo/views/search/search_screen.dart';
-import 'package:LetsGo/widgets/notification_badge.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:LetsGo/provider/auth_provider.dart';
 import 'package:LetsGo/views/splash/splash_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
 import 'constants/url.dart';
@@ -23,7 +19,6 @@ IO.Socket socket = IO.io(AppUrl.baseUrlSocket,
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   Stripe.publishableKey =
       'pk_test_51MdvGWEkovoeS1CWWQk30YnyudXkuXtJ4l1n3CKDmDAn1E5hG66vzrQQR9vqBssaEook290zHYOLAFTydDzm8ODw00UO7ivtC8';
   await Stripe.instance.applySettings();
@@ -43,8 +38,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   late final LocalNotificationService service;
 
   @override
@@ -66,69 +59,7 @@ class _MyAppState extends State<MyApp> {
             });
     service = LocalNotificationService();
     service.intialize();
-    saveUserFirebase();
     listenToNotification();
-    _firebaseMessaging.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-    );
-
-    _firebaseMessaging.getToken().then((token) {
-      print('FirebaseMessaging token: $token');
-      assert(token != null);
-      print('FCM token : $token');
-
-      _firebaseMessaging.subscribeToTopic('all');
-    });
-
-    _firebaseMessaging.getInitialMessage().then((message) {
-      if (message != null) {
-        int totalNotifications = int.parse(message.data['total_notifications']);
-        setState(() {
-          NotificationBadge(
-              totalNotifications: totalNotifications,
-              icon: Icons.notifications);
-        });
-      }
-    });
-
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print("J'ai reçu un message alors que j'étais au premier plan !");
-      print('Message data: ${message.data}');
-
-      globals.dataNotification.addAll([message.data]);
-
-      if (message.notification != null) {
-        print(
-            'Le message contenait également une notification: ${message.notification}');
-        int totalNotifications = int.parse(message.data['total_notifications']);
-        setState(() {
-          NotificationBadge(
-              totalNotifications: totalNotifications,
-              icon: Icons.notifications);
-        });
-      }
-    });
-
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('Un nouvel événement onMessageOpenedApp a été publié !');
-      print('Message data: ${message.data}');
-
-      if (message.notification != null) {
-        print(
-            'Le message contenait également une notification: ${message.notification}');
-        int totalNotifications = int.parse(message.data['total_notifications']);
-        setState(() {
-          NotificationBadge(
-              totalNotifications: totalNotifications,
-              icon: Icons.notifications);
-        });
-      }
-    });
     getReservationList();
     super.initState();
   }
@@ -154,20 +85,6 @@ class _MyAppState extends State<MyApp> {
         home: SplashScreen(),
       ),
     );
-  }
-
-  void saveUserFirebase() async {
-    String url = '${AppUrl.baseUrl}/auth/getAllUser';
-
-    final response = await http.get(Uri.parse(url));
-
-    final jsonResponse = jsonDecode(response.body);
-
-    if (jsonResponse.length > 0) {
-      jsonResponse.forEach((item) {
-        _firestore.collection('users').doc(item['id']).set(item);
-      });
-    }
   }
 
   void listenToNotification() =>

@@ -1,10 +1,9 @@
-import 'package:LetsGo/views/chats/chat_screen.dart';
+import 'package:LetsGo/views/profil/settings_scren.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:LetsGo/views/home/home.dart';
 import 'package:line_icons/line_icons.dart';
-import '../camera/video_camera_screen.dart';
-import '../community/community_screen.dart';
+import '../profil/profil_screen.dart';
 import '../search/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,9 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     const Home(),
     const SearchScreen(),
-    const VideoCameraScreen(),
-    const ChatScreen(),
-    const CommunityScreen(),
+    const SettingsScren(),
+    const ProfilScreen(),
   ];
 
   @override
@@ -65,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
             hoverColor: Colors.grey[100]!,
             gap: 8,
             activeColor: Colors.black,
-            iconSize: 25,
+            iconSize: 28,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             duration: const Duration(milliseconds: 400),
             tabBackgroundColor: Colors.grey[100]!,
@@ -78,15 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: LineIcons.search,
               ),
               GButton(
-                icon: Icons.add_box,
-                iconSize: 30,
+                icon: LineIcons.heart,
               ),
               GButton(
-                icon: LineIcons.comments,
-                //badge notification at the top right of the icon
-              ),
-              GButton(
-                icon: Icons.slow_motion_video,
+                icon: Icons.supervisor_account_outlined,
               )
             ],
             selectedIndex: _selectedIndex,

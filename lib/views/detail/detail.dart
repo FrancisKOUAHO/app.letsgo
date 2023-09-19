@@ -37,13 +37,14 @@ class _DetailState extends State<Detail> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    globals.AdultValue = int.parse(widget.activity.price.replaceAll('€', ''));
+    globals.adultValue =
+        double.parse(widget.activity.price.replaceAll('€', ''));
+
     return Scaffold(
       backgroundColor: LetsGoTheme.main,
       appBar: PreferredSize(
@@ -106,10 +107,9 @@ class _DetailState extends State<Detail> {
                                 height: 100,
                                 fit: BoxFit.cover,
                                 placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    Image.network(
-                                        '${Uri.parse(AppUrl.baseUrlImage)}/${widget.activity.image}'),
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) => Image.network(
+                                    '${Uri.parse(AppUrl.baseUrlImage)}/${widget.activity.image}'),
                               ),
                             ),
                             Expanded(
@@ -172,9 +172,9 @@ class _DetailState extends State<Detail> {
                         child: Form(
                           child: Column(
                             children: [
-                              Row(
+                              const Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     'Heure de la réservation',
                                     style: TextStyle(
@@ -293,9 +293,8 @@ class _DetailState extends State<Detail> {
                                   selectedNumber: globals.nbAdult,
                                   headerColor: LetsGoTheme.main,
                                   buttonTextColor: LetsGoTheme.main,
-                                  onChanged: (value) => setState(() => {
-                                        globals.nbAdult = value,
-                                      }),
+                                  onChanged: (value) =>
+                                      setState(() => globals.nbAdult = value),
                                 ),
                               ),
                             ],

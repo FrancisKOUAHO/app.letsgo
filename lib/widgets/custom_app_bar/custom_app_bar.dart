@@ -100,35 +100,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
             NotificationBadge(
                 icon: Icons.notifications,
                 totalNotifications: _totalNotifications),
-            Container(
-              padding: const EdgeInsets.fromLTRB(5, 0, 20, 0),
-              child: Material(
-                borderRadius: BorderRadius.circular(14.0),
-                color: LetsGoTheme.white,
-                child: InkWell(
-                  onTap: () {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ProfilScreen()),
-                      );
-                    });
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(14.0),
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          '${Uri.parse(AppUrl.baseUrlImage)}/${_user['photo']}',
-                      width: 48,
-                      height: 48,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => const Loader(),
-                      errorWidget: (context, url, error) => const Image(image: NetworkImage('https://images.unsplash.com/photo-1600480505021-e9cfb05527f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2066&q=80'))),
-                    ),
-                  ),
-                ),
-              ),
           ],
         )
       ],

@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:LetsGo/views/login/sign_in.dart';
 import 'package:flutter/material.dart';
 
-import '../../database/db_provider.dart';
 import '../../utils/routers.dart';
 import '../home/home_screen.dart';
 
@@ -15,23 +13,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final DatabaseProvider? db = DatabaseProvider();
-  dynamic _token = '';
 
   @override
   void initState() {
-    _token = db!.getToken().then((value) => _token = value);
     navigate();
     super.initState();
   }
 
   void navigate() {
     Future.delayed(const Duration(seconds: 3), () {
-      if (_token != '') {
-        PageNavigator(ctx: context).nextPageOnly(page: const HomeScreen());
-      } else {
-        PageNavigator(ctx: context).nextPageOnly(page: const SignIn());
-      }
+      PageNavigator(ctx: context).nextPageOnly(page: const HomeScreen());
     });
   }
 
@@ -57,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  'LetsGo',
+                  'LetsGo v1.0.5',
                   style: TextStyle(
                       fontFamily: 'Lato',
                       fontSize: 15,

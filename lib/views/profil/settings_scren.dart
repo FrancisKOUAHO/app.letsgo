@@ -11,7 +11,6 @@ import 'package:LetsGo/globals.dart' as globals;
 import '../../constants/url.dart';
 import '../../utils/routers.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';
-import '../home/home_screen.dart';
 
 final requestBaseUrl = AppUrl.baseUrl;
 

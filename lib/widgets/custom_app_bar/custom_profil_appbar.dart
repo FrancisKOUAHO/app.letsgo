@@ -26,37 +26,6 @@ class _CustomProfilAppBarState extends State<CustomProfilAppBar> {
         'Mon profil',
         style: TextStyle(color: LetsGoTheme.black),
       ),
-      leading: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-            child: Card(
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              color: const Color(0x3A000000),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: Container(
-                color: LetsGoTheme.lightPurple,
-                width: 45,
-                height: 45,
-                child: IconButton(
-                  icon:  FaIcon(
-                    FontAwesomeIcons.chevronLeft,
-                    color: LetsGoTheme.main,
-                  ),
-                  iconSize: 20.0,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
       actions: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

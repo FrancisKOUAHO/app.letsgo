@@ -1,10 +1,5 @@
-import 'dart:convert';
-
-import 'package:LetsGo/theme/letsgo_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:LetsGo/theme/LetsGo_theme.dart';
-import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:LetsGo/globals.dart' as globals;
 import 'package:http/http.dart' as http;
 
@@ -39,14 +34,14 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
       nbAdultsCards.add(
         Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-          child: (Container(
+          child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: const [
                 BoxShadow(
                   blurRadius: 4,
-                  color: Color.fromARGB(51, 138, 138, 138),
+                  color: Color(0x320E151B),
                   offset: Offset(0, 2),
                 )
               ],
@@ -77,7 +72,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                         ),
                         Padding(
                           padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
+                          const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -92,7 +87,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     7, 0, 0, 0),
                                 child: Text(
-                                  '${user['full_name']}',
+                                  '${user != null ? user['full_name'] : ''}',
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -103,7 +98,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                         ),
                         Padding(
                           padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
+                          const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -116,7 +111,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     7, 0, 0, 0),
                                 child: Text(
-                                  '${user['email']}',
+                                  '${user != null ? user['email'] : ''}',
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -127,7 +122,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                         ),
                         Padding(
                           padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
+                          const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -140,7 +135,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     8, 0, 0, 0),
                                 child: Text(
-                                  globals.phone,
+                                  '${globals.phone}',
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -151,7 +146,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                         ),
                         Padding(
                           padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
+                          const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -164,7 +159,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     7, 0, 0, 0),
                                 child: Text(
-                                  '${globals.AdultValue + globals.ChildValue} €',
+                                  '${(globals.adultValue + globals.childValue)} €',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 16,
@@ -180,7 +175,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                 ],
               ),
             ),
-          )),
+          ),
         ),
       );
     }
