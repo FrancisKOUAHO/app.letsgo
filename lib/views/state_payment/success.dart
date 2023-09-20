@@ -1,4 +1,4 @@
-import 'package:LetsGo/views/home/home.dart';
+import 'package:LetsGo/views/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class Success extends StatefulWidget {
@@ -71,7 +71,7 @@ class _SuccessState extends State<Success> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const Home(),
+                    builder: (context) => const HomeScreen(),
                   ),
                 );
               },

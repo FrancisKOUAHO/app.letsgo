@@ -23,4 +23,7 @@ int nbReservation = 0;
 String userName = '';
 double latitude = 0.0;
 double longitude = 0.0;
+String phoneController = '';
+String emailController = '';
+String fullNameController = '';
 List<dynamic> dataNotification = [];

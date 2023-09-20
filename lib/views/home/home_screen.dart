@@ -1,8 +1,9 @@
-import 'package:LetsGo/views/profil/settings_scren.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:LetsGo/views/home/home.dart';
 import 'package:line_icons/line_icons.dart';
+import '../booking/list_booking.dart';
+import '../favorite/favorite_screen.dart';
 import '../profil/profil_screen.dart';
 import '../search/search_screen.dart';
 
@@ -21,7 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     const Home(),
     const SearchScreen(),
-    const SettingsScren(),
+    const FavoriteScreen(),
+    const ListBooking(),
     const ProfilScreen(),
   ];
 
@@ -77,6 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               GButton(
                 icon: LineIcons.heart,
+              ),
+              GButton(
+                icon: LineIcons.alternateTicket,
               ),
               GButton(
                 icon: Icons.supervisor_account_outlined,

@@ -21,6 +21,9 @@ class Attendees extends StatefulWidget {
 
 class _AttendeesState extends State<Attendees> {
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
+
   bool _isLoading = false;
 
   @override
@@ -61,6 +64,7 @@ class _AttendeesState extends State<Attendees> {
                       child: Column(
                         children: [
                           TextField(
+                            controller: _fullNameController,
                             cursorColor: Colors.black,
                             cursorWidth: 2,
                             style: const TextStyle(color: Colors.black),
@@ -107,6 +111,7 @@ class _AttendeesState extends State<Attendees> {
                           ),
                           const SizedBox(height: 10),
                           TextField(
+                            controller: _emailController,
                             cursorColor: Colors.black,
                             cursorWidth: 2,
                             style: const TextStyle(color: Colors.black),
@@ -258,23 +263,14 @@ class _AttendeesState extends State<Attendees> {
                           ),
                           child: Column(
                             children: [
-                              Row(
+                              const Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Coordonnées adultes',
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(1, 0, 0, 0),
-                                    child: Icon(
-                                      Icons.man,
-                                      color: LetsGoTheme.main,
-                                      size: 25.0,
                                     ),
                                   ),
                                 ],
@@ -340,72 +336,65 @@ class _AttendeesState extends State<Attendees> {
       _isLoading = true;
     });
 
-    String url = '${AppUrl.baseUrl}/auth/updateUser/${globals.userID}';
-    final currentContext = context;
-
     try {
-      final response = await http.put(Uri.parse(url),
-          body: {'phone': _phoneController.text, 'role': 'guest'});
-      final responseJson = json.decode(response.body);
+      String url = '${AppUrl.baseUrl}/reservations/create_reservation';
+
+      final Map<String, String> requestBody = {
+        'full_name': _fullNameController.text,
+        'email': _emailController.text,
+        'phone': _phoneController.text,
+        'activity_id': globals.activityId,
+        'number_of_places': '${globals.nbAdult}',
+        'time_of_session': '${globals.choiceTime}',
+        'status': 'pending',
+        'date_of_session': '${globals.selectedDate}',
+        'total_price': '${(globals.nbAdult * globals.adultValue)}',
+      };
+
+      globals.phoneController = _phoneController.text;
+      globals.emailController = _emailController.text;
+      globals.fullNameController = _fullNameController.text;
+
+      if (globals.guestId != null) {
+        requestBody['user_id'] = globals.guestId;
+      }
+
+      if (globals.organisatorId != null) {
+        requestBody['organisator_id'] = globals.organisatorId;
+      }
+
+      final response = await http.post(Uri.parse(url), body: requestBody);
+
+      final responseReservation = json.decode(response.body);
 
       if (response.statusCode == 200) {
-        globals.phone = _phoneController.text;
-        globals.guestId = responseJson['data']['id'];
-        String url = '${AppUrl.baseUrl}/reservations/create_reservation';
-
-        final response = await http.post(Uri.parse(url), body: {
-          'user_id': globals.guestId,
-          'activity_id': globals.activityId,
-          'organisator_id': globals.organisatorId,
-          'number_of_places': '${globals.nbAdult + globals.nbChild}',
-          'time_of_session': '${globals.choiceTime}',
-          'status': 'pending',
-          'date_of_session': '${globals.selectedDate}',
-          'total_price':
-              '${(globals.nbAdult * globals.adultValue) + (globals.nbChild * globals.childValue)}',
+        setState(() {
+          _isLoading = false;
         });
+        globals.responseReservationId =
+            responseReservation['reservation']['id'];
 
-        final responseReservation = json.decode(response.body);
-
-        if (response.statusCode == 200) {
-          setState(() {
-            _isLoading = false;
-          });
-          globals.responseReservationId =
-              responseReservation['reservation']['id'];
-
-          Navigator.push(
-            currentContext,
-            MaterialPageRoute(
-              builder: (context) => Summary(),
-            ),
-          );
-        } else {
-          setState(() {
-            _isLoading = false;
-          });
-          showMessageErreur(
-              message:
-                  'Une erreur est survenue lors de la réservation, veuillez réessayer',
-              context: currentContext);
-          Navigator.pop(currentContext);
-        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Summary(),
+          ),
+        );
       } else {
         setState(() {
           _isLoading = false;
         });
-        showMessage(
-            message: 'Veuillez remplir le champ téléphone',
-            context: currentContext);
-        print('Guest account not created');
+        showMessageErreur(
+            message:
+                'Une erreur est survenue lors de la réservation, veuillez réessayer',
+            context: context);
       }
     } catch (e) {
       setState(() {
         _isLoading = false;
       });
       showMessageErreur(
-          message: 'Une erreur s\'est produite : $e', context: currentContext);
-      Navigator.pop(currentContext);
+          message: 'Une erreur s\'est produite : $e', context: context);
     }
   }
 }

@@ -3,8 +3,7 @@ import 'package:LetsGo/theme/LetsGo_theme.dart';
 
 import '../../widgets/booking/bookings_coming.dart';
 import '../../widgets/booking/past_bookings.dart';
-import '../../widgets/custom_app_bar/custom_return_appbar.dart';
-import '../../widgets/not_available_yet.dart';
+import '../../widgets/custom_app_bar/custom_whitout_appbar.dart';
 
 class ListBooking extends StatefulWidget {
   const ListBooking({
@@ -36,7 +35,7 @@ class _ListBookingState extends State<ListBooking>
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 60),
-        child: CustomReturnAppBar(
+        child: CustomWhitoutAppBar(
             'Vos réservations', Colors.transparent, LetsGoTheme.black),
       ),
       body: SingleChildScrollView(
@@ -47,8 +46,7 @@ class _ListBookingState extends State<ListBooking>
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                Container(
-                  // height: 50,
+                SizedBox(
                   width: MediaQuery.of(context).size.height,
                   child: Column(
                     children: [
@@ -67,13 +65,13 @@ class _ListBookingState extends State<ListBooking>
                           tabs: const [
                             Tab(
                               child: Text(
-                                "À venir",
+                                'À venir',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ),
                             Tab(
                               child: Text(
-                                "Passée",
+                                'Passée',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ),
@@ -88,7 +86,7 @@ class _ListBookingState extends State<ListBooking>
                     controller: tabController,
                     children: const [
                       BookingsComing(),
-                      //PastBookings(),
+                      PastBookings(),
                     ],
                   ),
                 )

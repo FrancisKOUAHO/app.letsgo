@@ -5,6 +5,7 @@ import 'package:LetsGo/theme/LetsGo_theme.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/auth_provider.dart';
+import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -29,6 +30,11 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
+        child: CustomReturnAppBar('', Colors.transparent, LetsGoTheme.black),
+      ),
       resizeToAvoidBottomInset: true,
       body: Column(
         mainAxisSize: MainAxisSize.max,
@@ -49,22 +55,13 @@ class _SignInState extends State<SignIn> {
                     width: 350,
                     height: 300,
                     decoration: const BoxDecoration(),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 40),
+                    child: const Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 40),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Bonjour !',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 18,
-                            ),
-                          ),
+                        children: [
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),

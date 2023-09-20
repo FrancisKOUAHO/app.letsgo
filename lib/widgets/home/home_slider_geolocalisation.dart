@@ -10,9 +10,7 @@ import 'package:LetsGo/widgets/skeleton/list_view_cards.dart';
 
 import '../../constants/url.dart';
 import '../../theme/LetsGo_theme.dart';
-import '../../utils/snack_message.dart';
 import '../../views/event/event_screen.dart';
-import '../../views/profil/settings_scren.dart';
 import '../loader/loader.dart';
 
 class HomeSliderSectionGeolocalisation extends StatefulWidget {

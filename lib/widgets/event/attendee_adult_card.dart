@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:LetsGo/globals.dart' as globals;
-import 'package:http/http.dart' as http;
 
-import '../../constants/url.dart';
 import '../../database/db_provider.dart';
 
 class AttendeeAdultCard extends StatefulWidget {
@@ -19,11 +17,6 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
 
   @override
   void initState() {
-    db!.getUser().then((value) {
-      setState(() {
-        user = value;
-      });
-    });
     super.initState();
   }
 
@@ -72,7 +65,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                         ),
                         Padding(
                           padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -87,7 +80,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     7, 0, 0, 0),
                                 child: Text(
-                                  '${user != null ? user['full_name'] : ''}',
+                                  globals.fullNameController,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -98,7 +91,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                         ),
                         Padding(
                           padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -111,7 +104,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     7, 0, 0, 0),
                                 child: Text(
-                                  '${user != null ? user['email'] : ''}',
+                                  globals.emailController,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -122,7 +115,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                         ),
                         Padding(
                           padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -135,7 +128,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     8, 0, 0, 0),
                                 child: Text(
-                                  '${globals.phone}',
+                                  globals.phoneController,
                                   style: const TextStyle(
                                     fontSize: 16,
                                   ),
@@ -146,7 +139,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                         ),
                         Padding(
                           padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -159,7 +152,7 @@ class _AttendeeAdultCardState extends State<AttendeeAdultCard> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     7, 0, 0, 0),
                                 child: Text(
-                                  '${(globals.adultValue + globals.childValue)} €',
+                                  '${(globals.adultValue)} €',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 16,

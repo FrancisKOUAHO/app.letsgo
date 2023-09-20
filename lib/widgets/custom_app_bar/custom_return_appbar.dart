@@ -1,3 +1,5 @@
+import 'package:LetsGo/views/home/home.dart';
+import 'package:LetsGo/views/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -54,7 +56,10 @@ class _CustomReturnAppBarState extends State<CustomReturnAppBar> {
                   ),
                   iconSize: 20.0,
                   onPressed: () {
-                    widget.pushRoute ?? Navigator.of(context).pop();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()));
                   },
                 ),
               ),

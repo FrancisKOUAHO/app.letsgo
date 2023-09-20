@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:LetsGo/globals.dart' as globals;
 import 'package:LetsGo/models/activity.model.dart';
 import 'package:LetsGo/widgets/skeleton/list_view_cards.dart';
 
@@ -12,7 +11,6 @@ import '../../constants/url.dart';
 import '../../theme/LetsGo_theme.dart';
 import '../../utils/snack_message.dart';
 import '../../views/event/event_screen.dart';
-import '../../views/profil/settings_scren.dart';
 import '../loader/loader.dart';
 
 class HomeSliderSection extends StatefulWidget {
@@ -122,11 +120,11 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                               borderRadius:
                                                   BorderRadius.circular(6),
                                             ),
-                                            child: Row(
+                                            child: const Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
-                                              children: const [
+                                              children: [
                                                 Text(
                                                   'Non partenaire',
                                                   style: TextStyle(

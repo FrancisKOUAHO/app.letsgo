@@ -61,7 +61,7 @@ dependencies:
   skeletons: ^0.0.3
   flutter_calendar_carousel: ^2.4.1
   shared_preferences: ^2.0.15
-  flutter_stripe: ^8.0.0
+  flutter_stripe: 9.4.0
   flutter_material_pickers: ^3.3.0
   localstorage: ^4.0.0+1
   flutter_chat_ui: ^1.6.6

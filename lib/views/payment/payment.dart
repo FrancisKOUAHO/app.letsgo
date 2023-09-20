@@ -9,6 +9,7 @@ import '../../constants/url.dart';
 import '../../database/db_provider.dart';
 import '../../theme/LetsGo_theme.dart';
 import '../../utils/routers.dart';
+import '../../utils/snack_message.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 import '../state_payment/success.dart';
 
@@ -361,44 +362,70 @@ class _PaymentState extends State<Payment> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () async {
-                              FocusManager.instance.primaryFocus?.unfocus();
-                              setState(() {
-                                _isLoading = true;
-                              });
-                              final paymentMethod =
-                                  await Stripe.instance.createPaymentMethod(
-                                      params: PaymentMethodParams.card(
-                                paymentMethodData: PaymentMethodData(
-                                  billingDetails: BillingDetails(
-                                    email: user['email'],
-                                    phone: globals.phone,
-                                    name: '${user['full_name']}',
+                              try {
+                                FocusManager.instance.primaryFocus?.unfocus();
+                                setState(() {
+                                  _isLoading = true;
+                                });
+
+                                final paymentMethod =
+                                    await Stripe.instance.createPaymentMethod(
+                                        params: PaymentMethodParams.card(
+                                  paymentMethodData: PaymentMethodData(
+                                    billingDetails: BillingDetails(
+                                      email: globals.emailController,
+                                      phone: globals.phoneController,
+                                      name: globals.fullNameController,
+                                    ),
                                   ),
-                                ),
-                              ));
+                                ));
 
-                              globals.paymentMethodId = paymentMethod.id;
+                                globals.paymentMethodId = paymentMethod.id;
 
-                              String url =
-                                  '${AppUrl.baseUrl}/payments/create_payment';
+                                String url =
+                                    '${AppUrl.baseUrl}/payments/create_payment';
 
-                              final response =
-                                  await http.post(Uri.parse(url), body: {
-                                'user_id': globals.guestId,
-                                'TokenIdStripe': globals.paymentMethodId,
-                                'reservation_id': globals.responseReservationId,
-                                'amount':
-                                    '${(globals.nbAdult * globals.adultValue) + (globals.nbChild * globals.childValue)}'
-                              });
+                                final Map<String, String> requestBody = {
+                                  'TokenIdStripe': globals.paymentMethodId,
+                                  'reservation_id':
+                                      globals.responseReservationId,
+                                  'amount':
+                                      '${(globals.nbAdult * globals.adultValue)}'
+                                };
 
-                              final jsonResponse = jsonDecode(response.body);
+                                if (globals.guestId != null) {
+                                  requestBody['user_id'] = globals.guestId;
+                                }
 
-                              if (response.statusCode == 200) {
+                                final response = await http.post(Uri.parse(url),
+                                    body: requestBody);
+
+                                final jsonResponse = jsonDecode(response.body);
+
+                                if (jsonResponse['success'] == true) {
+                                  setState(() {
+                                    _isLoading = false;
+                                  });
+                                  PageNavigator(ctx: context)
+                                      .nextPageOnly(page: const Success());
+                                }
+                              } catch (error) {
                                 setState(() {
                                   _isLoading = false;
                                 });
-                                PageNavigator(ctx: context)
-                                    .nextPageOnly(page: const Success());
+                                if (error is StripeException) {
+                                  showMessageErreur(
+                                    message:
+                                        'Erreur de paiement : ${error.error.localizedMessage}',
+                                    context: context,
+                                  );
+                                } else {
+                                  showMessageErreur(
+                                    message:
+                                        'Une erreur inattendue est survenue. Réessayez dans quelques secondes.',
+                                    context: context,
+                                  );
+                                }
                               }
                             },
                             style: ElevatedButton.styleFrom(
