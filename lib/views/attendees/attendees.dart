@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:LetsGo/database/db_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:http/http.dart' as http;
@@ -35,7 +36,6 @@ class _AttendeesState extends State<Attendees> {
   Widget build(BuildContext context) {
     List<Widget> nbAdultsForms = [];
 
-    // Code ExpansionTileCard pour les adultes
     for (int x = 1; x <= globals.nbAdult; x++) {
       nbAdultsForms.add(
         Padding(
@@ -46,7 +46,6 @@ class _AttendeesState extends State<Attendees> {
               expandedTextColor: const Color(0xff4376FF),
               shadowColor: const Color(0x320E151B),
               borderRadius: BorderRadius.circular(12),
-              // key: cardA,
               title: const Text('Adulte 1'),
               children: <Widget>[
                 const Divider(
@@ -355,15 +354,25 @@ class _AttendeesState extends State<Attendees> {
       globals.emailController = _emailController.text;
       globals.fullNameController = _fullNameController.text;
 
-      if (globals.guestId != null) {
-        requestBody['user_id'] = globals.guestId;
+      if (globals.userID != null) {
+        requestBody['user_id'] = globals.userID;
       }
 
       if (globals.organisatorId != null) {
         requestBody['organisator_id'] = globals.organisatorId;
       }
 
-      final response = await http.post(Uri.parse(url), body: requestBody);
+      String token = await DatabaseProvider().getToken();
+      Map<String, String> headers = {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      };
+
+      final response = await http.post(
+        Uri.parse(url),
+        body: requestBody,
+        headers: headers, // Ajoutez les en-têtes ici
+      );
 
       final responseReservation = json.decode(response.body);
 
@@ -372,7 +381,7 @@ class _AttendeesState extends State<Attendees> {
           _isLoading = false;
         });
         globals.responseReservationId =
-            responseReservation['reservation']['id'];
+        responseReservation['reservation']['id'];
 
         Navigator.push(
           context,
@@ -386,7 +395,7 @@ class _AttendeesState extends State<Attendees> {
         });
         showMessageErreur(
             message:
-                'Une erreur est survenue lors de la réservation, veuillez réessayer',
+            'Une erreur est survenue lors de la réservation, veuillez réessayer',
             context: context);
       }
     } catch (e) {

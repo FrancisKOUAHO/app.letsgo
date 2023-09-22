@@ -143,7 +143,7 @@ class _BookingsComingState extends State<BookingsComing> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional
-                                            .fromSTEB(0, 10, 0, 0),
+                                            .fromSTEB(0, 15, 0, 0),
                                         child: Container(
                                           width: 260,
                                           decoration: const BoxDecoration(
@@ -161,7 +161,7 @@ class _BookingsComingState extends State<BookingsComing> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional
-                                            .fromSTEB(0, 7, 0, 0),
+                                            .fromSTEB(0, 20, 0, 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -174,7 +174,7 @@ class _BookingsComingState extends State<BookingsComing> {
                                               children: [
                                                 const Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 20, 5, 0),
+                                                      .fromSTEB(0, 0, 5, 0),
                                                   child: Icon(
                                                     Icons.qr_code,
                                                     color: Colors.black,

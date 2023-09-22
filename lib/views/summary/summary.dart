@@ -83,7 +83,6 @@ class _SummaryState extends State<Summary> {
                     ),
                   ],
                 ),
-                // SizedBox(height: MediaQuery.of(context).size.height * 0.19),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[

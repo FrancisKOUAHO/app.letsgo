@@ -393,8 +393,8 @@ class _PaymentState extends State<Payment> {
                                       '${(globals.nbAdult * globals.adultValue)}'
                                 };
 
-                                if (globals.guestId != null) {
-                                  requestBody['user_id'] = globals.guestId;
+                                if (globals.userID != null) {
+                                  requestBody['user_id'] = globals.userID;
                                 }
 
                                 final response = await http.post(Uri.parse(url),

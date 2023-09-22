@@ -19,7 +19,7 @@ class _TicketState extends State<Ticket> {
   Widget build(BuildContext context) {
     final formatQrcode = widget.myReservation.qrcode.substring(22);
     final decodedImage = base64Decode(formatQrcode);
-    int nbTickets = 3;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
@@ -43,56 +43,8 @@ class _TicketState extends State<Ticket> {
                   child: Image.network(
                     '${widget.myReservation.activities['image']}',
                     width: double.infinity,
-                    height: 200,
+                    height: MediaQuery.of(context).size.height * 0.35,
                     fit: BoxFit.cover,
-                  ),
-                ),
-                Align(
-                  alignment: const AlignmentDirectional(0, 0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 200,
-                    decoration: const BoxDecoration(),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 165,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFFFB423),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.access_time,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 0, 0, 0),
-                                  child: Text(
-                                    'Dans X jours',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
                 ),
               ],
@@ -104,7 +56,8 @@ class _TicketState extends State<Ticket> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,12 +81,11 @@ class _TicketState extends State<Ticket> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         width: 290,
                                         child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 5),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 0, 5),
                                           child: Text(
                                             '${widget.myReservation.activities['name']}',
                                             style: const TextStyle(
@@ -152,16 +104,6 @@ class _TicketState extends State<Ticket> {
                               ],
                             ),
                           ),
-                          // Row(
-                          //   mainAxisSize: MainAxisSize.max,
-                          //   children: [
-                          //     Icon(
-                          //       Icons.chevron_right_sharp,
-                          //       color: Colors.black,
-                          //       size: 18,
-                          //     ),
-                          //   ],
-                          // ),
                         ],
                       ),
                     ),
@@ -169,7 +111,8 @@ class _TicketState extends State<Ticket> {
                       thickness: 1,
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -180,10 +123,10 @@ class _TicketState extends State<Ticket> {
                             size: 23,
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                15, 0, 0, 0),
                             child: Text(
-                              '${widget.myReservation.date_of_session.substring(0, 10)}, à ${widget.myReservation.time_of_session}',
+                              '${widget.myReservation.dateOfSession.substring(0, 10)}, à ${widget.myReservation.timeOfSession}',
                               style: const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
@@ -197,7 +140,8 @@ class _TicketState extends State<Ticket> {
                       thickness: 1,
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -213,27 +157,27 @@ class _TicketState extends State<Ticket> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          Padding(
+                          const Padding(
                             padding:
-                                const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 5),
                                   child: Text(
-                                    '${widget.myReservation.users['full_name']}',
-                                    style: const TextStyle(
+                                    'full_name',
+                                    style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16,
                                     ),
                                   ),
                                 ),
                                 Text(
-                                  'ID:${widget.myReservation.users['id']}',
-                                  style: const TextStyle(
+                                  'ID:',
+                                  style: TextStyle(
                                     color: Color(0xFFB7B7B7),
                                     fontWeight: FontWeight.w300,
                                     fontSize: 14.5,
@@ -248,23 +192,23 @@ class _TicketState extends State<Ticket> {
                     const Divider(
                       thickness: 1,
                     ),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                    const Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.local_play,
                             color: Colors.black,
                             size: 23,
                           ),
                           Padding(
                             padding:
-                                const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
+                              children: [
                                 Text(
                                   'Billets',
                                   style: TextStyle(
@@ -280,8 +224,9 @@ class _TicketState extends State<Ticket> {
                     ),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: Container(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                        child: SizedBox(
                           width: double.infinity,
                           child: Stack(
                             children: [
@@ -306,13 +251,13 @@ class _TicketState extends State<Ticket> {
                                               ),
                                             ),
                                           ),
-                                          Padding(
+                                          const Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0, 10, 0, 0),
                                             child: Text(
-                                              '${widget.myReservation.users['full_name']}',
-                                              style: const TextStyle(
+                                              'full_name',
+                                              style: TextStyle(
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 18,
                                               ),
@@ -328,9 +273,8 @@ class _TicketState extends State<Ticket> {
                                             ),
                                           ),
                                           Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0, 12, 0, 0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(0, 12, 0, 0),
                                             child: ElevatedButton.icon(
                                               onPressed: () {},
                                               style: ElevatedButton.styleFrom(
@@ -370,35 +314,6 @@ class _TicketState extends State<Ticket> {
                         ),
                       ),
                     ),
-                    //   Align(
-                    //   alignment: AlignmentDirectional(0, 0.8),
-                    //   child: Padding(
-                    //     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                    //     child: SmoothPageIndicator(
-                    //       controller: _model.pageViewController ??=
-                    //           PageController(initialPage: 0),
-                    //       count: 1,
-                    //       axisDirection: Axis.horizontal,
-                    //       onDotClicked: (i) {
-                    //         _model.pageViewController!.animateToPage(
-                    //           i,
-                    //           duration: Duration(milliseconds: 500),
-                    //           curve: Curves.ease,
-                    //         );
-                    //       },
-                    //       effect: ExpandingDotsEffect(
-                    //         expansionFactor: 2,
-                    //         spacing: 8,
-                    //         radius: 16,
-                    //         dotWidth: 16,
-                    //         dotHeight: 16,
-                    //         dotColor: Color(0xFF9E9E9E),
-                    //         activeDotColor: Color(0xFF415FFF),
-                    //         paintStyle: PaintingStyle.fill,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
