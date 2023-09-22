@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:LetsGo/views/home/home.dart';
+import 'package:LetsGo/views/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:LetsGo/views/login/sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:LetsGo/globals.dart' as globals;
 
@@ -69,6 +68,6 @@ class DatabaseProvider extends ChangeNotifier {
     final value = await _pref;
 
     value.clear();
-    PageNavigator(ctx: context).nextPageOnly(page: const Home());
+    PageNavigator(ctx: context).nextPageOnly(page: const HomeScreen());
   }
 }

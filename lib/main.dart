@@ -24,7 +24,7 @@ Future<void> main() async {
   await Stripe.instance.applySettings();
   socket.onConnect((_) {
     print('connect');
-  }); // this is the event that will be triggered when the server emits the event
+  });
   socket.onDisconnect((_) => print('disconnect'));
   socket.on('fromServer', (_) => print(_));
   runApp(const MyApp());
@@ -39,6 +39,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late final LocalNotificationService service;
+
+  dynamic _user;
 
   @override
   void initState() {

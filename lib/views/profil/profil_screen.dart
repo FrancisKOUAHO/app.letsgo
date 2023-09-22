@@ -28,6 +28,13 @@ class _ProfilScreenState extends State<ProfilScreen> {
   @override
   void initState() {
     super.initState();
+    DatabaseProvider().getUser().then((value) {
+      if (mounted) {
+        setState(() {
+          _user = value;
+        });
+      }
+    });
   }
 
   @override
@@ -51,7 +58,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    if (_user != null) ...[
+                    if (_user != null) ...{
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -59,12 +66,12 @@ class _ProfilScreenState extends State<ProfilScreen> {
                           Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              const Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0, 10, 0, 0),
                                 child: Text(
-                                  '_user',
-                                  style: TextStyle(
+                                  _user['full_name'] ?? '',
+                                  style: const TextStyle(
                                     fontFamily: 'Outfit',
                                     fontSize: 25,
                                     fontWeight: FontWeight.w500,
@@ -76,7 +83,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     0, 10, 0, 0),
                                 child: Text(
                                   globals.currentAddress ??
-                                      '${globals.currentAddress.substring(0, 10)}...',
+                                      '${globals.currentAddress?.substring(0, 10) ?? ''}...',
                                   style: const TextStyle(
                                     fontFamily: 'Poppins',
                                     color: Color(0xBA777777),
@@ -89,7 +96,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                           ),
                         ],
                       ),
-                    ] else ...[
+                    } else ...{
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -138,7 +145,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                           ),
                         ],
                       ),
-                    ],
+                    },
                   ],
                 ),
                 Container(
@@ -151,7 +158,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                         children: [
                           const Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(20, 16, 0, 0),
+                            EdgeInsetsDirectional.fromSTEB(20, 16, 0, 0),
                             child: Text(
                               'Compte',
                               style: TextStyle(
@@ -184,11 +191,11 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    if (_user != null) ...[
+                                    if (_user != null) ...{
                                       buildAccountOptionRow(
                                           context, 'Paramètres du compte'),
                                       const Divider(thickness: 1),
-                                    ],
+                                    },
                                     buildAccountOptionRow(context, 'Social'),
                                     const Divider(thickness: 1),
                                     buildAccountOptionRow(context, 'Langue'),
@@ -200,10 +207,10 @@ class _ProfilScreenState extends State<ProfilScreen> {
                               ),
                             ),
                           ),
-                          if (_user != null) ...[
+                          if (_user != null) ...{
                             const Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
+                              EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
                               child: Text(
                                 'Avancé',
                                 style: TextStyle(
@@ -247,9 +254,8 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                 child: const Text('Se déconnecter',
                                     style: TextStyle(color: Colors.redAccent)),
                               ),
-                            )
-                          ] else
-                            ...[],
+                            ),
+                          } else ...{},
                         ],
                       ),
                     ],
@@ -368,7 +374,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
   }
 }
 
-showAlertDialog(BuildContext context) {
+showAlertDialog(BuildContext context) async {
   // set up the buttons
   Widget cancelButton = TextButton(
     child: const Text('Annuler', style: TextStyle(color: Colors.black)),
@@ -376,37 +382,43 @@ showAlertDialog(BuildContext context) {
       Navigator.pop(context);
     },
   );
+
   Widget continueButton = TextButton(
     child: const Text('Oui, je suis sûr',
         style: TextStyle(color: Colors.redAccent)),
     onPressed: () async {
-      final requestBaseUrl = AppUrl.baseUrl;
+      if (globals.userID != null) {
+        final requestBaseUrl = AppUrl.baseUrl;
 
-      String url = '$requestBaseUrl/auth/deleteAccount/${globals.userID}';
-      http.Response req = await http.delete(Uri.parse(url));
+        String url = '$requestBaseUrl/auth/deleteAccount/${globals.userID}';
+        http.Response req = await http.delete(Uri.parse(url));
 
-      if (req.statusCode == 200 || req.statusCode == 201) {
-        Fluttertoast.showToast(
-            msg: 'Votre compte a été supprimé',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 3,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
-        PageNavigator(ctx: context).nextPageOnly(page: const Home());
+        if (req.statusCode == 200 || req.statusCode == 201) {
+          Fluttertoast.showToast(
+              msg: 'Votre compte a été supprimé',
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 3,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0);
+          PageNavigator(ctx: context).nextPageOnly(page: const Home());
+        } else {
+          Fluttertoast.showToast(
+              msg: 'Une erreur est survenue',
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 3,
+              backgroundColor: Colors.yellow,
+              textColor: Colors.white,
+              fontSize: 16.0);
+        }
       } else {
-        Fluttertoast.showToast(
-            msg: 'Une erreur est survenue',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 3,
-            backgroundColor: Colors.yellow,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        // Gérer le cas où globals.userID est null
       }
     },
   );
+
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: const Align(
@@ -424,6 +436,7 @@ showAlertDialog(BuildContext context) {
       continueButton,
     ],
   );
+
   // show the dialog
   showDialog(
     context: context,

@@ -4,9 +4,11 @@ import 'package:LetsGo/views/filter/filter_screen.dart';
 import 'package:LetsGo/widgets/home/pub_two.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:LetsGo/globals.dart' as globals;
 import 'package:LetsGo/models/Category.model.dart';
 
 import '../../constants/url.dart';
+import '../../database/db_provider.dart';
 import '../../theme/LetsGo_theme.dart';
 import '../../widgets/custom_app_bar/custom_app_bar.dart';
 import '../../widgets/home/home_categories_filter.dart';
@@ -27,9 +29,17 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Future<List<Category>> categoriesFuture = getCategoryList();
   dynamic getUser;
+  dynamic _user;
 
   @override
   void initState() {
+    DatabaseProvider().getUser().then((value) {
+      if (mounted) {
+        setState(() {
+          _user = value;
+        });
+      }
+    });
     super.initState();
   }
 
@@ -43,6 +53,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    if (_user != null) {
+      globals.userID =  '${_user['id']}';
+    }
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: const PreferredSize(

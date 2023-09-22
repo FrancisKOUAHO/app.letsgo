@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:LetsGo/globals.dart' as globals;
 
 import '../../constants/url.dart';
+import '../../database/db_provider.dart';
 import '../../models/reservation.model.dart';
 import '../ticket/ticket.dart';
 
@@ -17,12 +19,9 @@ class BookingsComing extends StatefulWidget {
 }
 
 class _BookingsComingState extends State<BookingsComing> {
-  late Future<List<Reservation>> reservationsFuture;
-
   @override
   void initState() {
     super.initState();
-    reservationsFuture = getReservationList();
   }
 
   Future<List<Reservation>> getReservationList() async {
@@ -135,7 +134,7 @@ class _BookingsComingState extends State<BookingsComing> {
                                           color: Colors.transparent,
                                         ),
                                         child: Text(
-                                          '${reservation.activities!['name']}',
+                                          '${reservation.activities!['name'] ?? ''}',
                                           style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 16,
@@ -144,32 +143,14 @@ class _BookingsComingState extends State<BookingsComing> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional
-                                            .fromSTEB(0, 5, 0, 0),
+                                            .fromSTEB(0, 10, 0, 0),
                                         child: Container(
                                           width: 260,
                                           decoration: const BoxDecoration(
                                             color: Colors.transparent,
                                           ),
                                           child: Text(
-                                            'Réservé par : ${reservation.users!['full_name']}',
-                                            style: const TextStyle(
-                                              color: Color(0xFFA0A0A0),
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(0, 5, 0, 0),
-                                        child: Container(
-                                          width: 260,
-                                          decoration: const BoxDecoration(
-                                            color: Colors.transparent,
-                                          ),
-                                          child: Text(
-                                            'Réservation pour : ${reservation.number_of_places}',
+                                            'Réservation pour : ${reservation.numberOfPlaces ?? ''}',
                                             style: const TextStyle(
                                               color: Color(0xFFA0A0A0),
                                               fontWeight: FontWeight.w300,
@@ -193,7 +174,7 @@ class _BookingsComingState extends State<BookingsComing> {
                                               children: [
                                                 const Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 5, 0),
+                                                      .fromSTEB(0, 20, 5, 0),
                                                   child: Icon(
                                                     Icons.qr_code,
                                                     color: Colors.black,
@@ -201,10 +182,9 @@ class _BookingsComingState extends State<BookingsComing> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  reservation.date_of_session!
-                                                          .substring(0, 10) ??
-                                                      reservation
-                                                          .date_of_session!
+                                                  reservation.dateOfSession
+                                                          ?.substring(0, 10) ??
+                                                      reservation.dateOfSession!
                                                           .substring(0, 9),
                                                   style: const TextStyle(
                                                     fontWeight:
@@ -233,8 +213,7 @@ class _BookingsComingState extends State<BookingsComing> {
                                                     ),
                                                   ),
                                                   Text(
-                                                    reservation
-                                                        .time_of_session!,
+                                                    reservation.timeOfSession!,
                                                     style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.normal,
@@ -263,7 +242,8 @@ class _BookingsComingState extends State<BookingsComing> {
                                                     ),
                                                   ),
                                                   Text(
-                                                    reservation.total_price!,
+                                                    reservation.totalPrice ??
+                                                        '',
                                                     style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.normal,
@@ -298,7 +278,7 @@ class _BookingsComingState extends State<BookingsComing> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Reservation>>(
-      future: reservationsFuture,
+      future: getReservationList(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(

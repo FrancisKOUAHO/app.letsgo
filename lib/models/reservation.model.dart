@@ -1,47 +1,64 @@
 class Reservation {
   final String? id;
-  final String? user_id;
-  final bool? used_qrcode;
+  final String? userId;
+  final String? activityId;
+  final bool? usedQrcode;
   final String? status;
-  final String? payment_status;
-  final String? number_of_places;
-  final String? time_of_session;
-  final String? date_of_session;
-  final String? total_price;
   final String? qrcode;
-  final bool? is_confirmed;
-  Map<String, dynamic>? users;
-  Map<String, dynamic>? activities;
+  final bool? isConfirmed;
+  final String? paymentStatus;
+  final String? paymentMethod;
+  final String? numberOfPlaces;
+  final String? timeOfSession;
+  final String? dateOfSession;
+  final String? totalPrice;
+  final String? inviteName;
+  final String? fullName;
+  final String? email;
+  final String? phone;
+  final Map<String, dynamic>? activities;
 
-  Reservation(
+  Reservation({
     this.id,
-    this.user_id,
-    this.used_qrcode,
+    this.userId,
+    this.activityId,
+    this.usedQrcode,
     this.status,
-    this.payment_status,
-    this.number_of_places,
-    this.time_of_session,
-    this.date_of_session,
-    this.total_price,
     this.qrcode,
-    this.is_confirmed,
-    this.users,
+    this.isConfirmed,
+    this.paymentStatus,
+    this.paymentMethod,
+    this.numberOfPlaces,
+    this.timeOfSession,
+    this.dateOfSession,
+    this.totalPrice,
+    this.inviteName,
+    this.fullName,
+    this.email,
+    this.phone,
     this.activities,
-  );
+  });
 
-  static Reservation fromJson(json) => Reservation(
-        json['id'],
-        json['user_id'],
-        json['used_qrcode'],
-        json['status'],
-        json['payment_status'],
-        json['number_of_places'],
-        json['time_of_session'],
-        json['date_of_session'],
-        json['total_price'],
-        json['qrcode'],
-        json['is_confirmed'],
-        json['users'],
-        json['activities'],
-      );
+  factory Reservation.fromJson(Map<String, dynamic> json) {
+    return Reservation(
+      id: json['id'],
+      userId: json['user_id'],
+      activityId: json['activity_id'],
+      usedQrcode: json['used_qrcode'] as bool?,
+      status: json['status'],
+      qrcode: json['qrcode'],
+      isConfirmed: json['is_confirmed'] as bool?,
+      paymentStatus: json['payment_status'],
+      paymentMethod: json['payment_method'],
+      numberOfPlaces: json['number_of_places'],
+      timeOfSession: json['time_of_session'],
+      dateOfSession: json['date_of_session'],
+      totalPrice: json['total_price'],
+      inviteName: json['invite_name'],
+      fullName: json['full_name'],
+      email: json['email'],
+      phone: json['phone'],
+      activities: json['activities'],
+    );
+  }
 }
