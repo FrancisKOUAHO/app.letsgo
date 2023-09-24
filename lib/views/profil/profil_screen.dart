@@ -62,7 +62,6 @@ class _ProfilScreenState extends State<ProfilScreen> {
                       height: 10,
                     ),
                     if (_user != null) ...{
-                      // Code à afficher lorsque l'utilisateur est authentifié
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -70,8 +69,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0, 10, 0, 0),
                             child: Text(
-                              _user['full_name'] ??
-                                  'Nom d\'utilisateur par défaut',
+                              _user['full_name'],
                               style: const TextStyle(
                                 fontFamily: 'Outfit',
                                 fontSize: 25,
@@ -96,7 +94,6 @@ class _ProfilScreenState extends State<ProfilScreen> {
                         ],
                       ),
                     } else ...{
-                      // Code à afficher lorsque l'utilisateur n'est pas authentifié
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
