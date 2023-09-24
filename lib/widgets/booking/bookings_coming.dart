@@ -287,8 +287,6 @@ class _BookingsComingState extends State<BookingsComing> {
         } else if (snapshot.hasData) {
           final reservations = snapshot.data!;
           return buildReservations(reservations);
-        } else if (snapshot.hasError) {
-          return Text('Erreur: ${snapshot.error}');
         } else {
           return const Center(
             child: Text('Aucune réservation'),

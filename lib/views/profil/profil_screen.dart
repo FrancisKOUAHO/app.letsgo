@@ -28,6 +28,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
   @override
   void initState() {
     super.initState();
+    DatabaseProvider().checkAuthentication(context);
     DatabaseProvider().getUser().then((value) {
       if (mounted) {
         setState(() {
@@ -46,6 +47,8 @@ class _ProfilScreenState extends State<ProfilScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    print('user: $_user');
+
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -59,44 +62,41 @@ class _ProfilScreenState extends State<ProfilScreen> {
                       height: 10,
                     ),
                     if (_user != null) ...{
-                      Row(
+                      // Code à afficher lorsque l'utilisateur est authentifié
+                      Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0, 10, 0, 0),
-                                child: Text(
-                                  _user['full_name'] ?? '',
-                                  style: const TextStyle(
-                                    fontFamily: 'Outfit',
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0, 10, 0, 0),
+                            child: Text(
+                              _user['full_name'] ??
+                                  'Nom d\'utilisateur par défaut',
+                              style: const TextStyle(
+                                fontFamily: 'Outfit',
+                                fontSize: 25,
+                                fontWeight: FontWeight.w500,
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0, 10, 0, 0),
-                                child: Text(
-                                  globals.currentAddress ??
-                                      '${globals.currentAddress?.substring(0, 10) ?? ''}...',
-                                  style: const TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: Color(0xBA777777),
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 16,
-                                  ),
-                                ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0, 10, 0, 0),
+                            child: Text(
+                              globals.currentAddress ??
+                                  '${globals.currentAddress?.substring(0, 10) ?? ''}...',
+                              style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                color: Color(0xBA777777),
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16,
                               ),
-                            ],
+                            ),
                           ),
                         ],
                       ),
                     } else ...{
+                      // Code à afficher lorsque l'utilisateur n'est pas authentifié
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -158,7 +158,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                         children: [
                           const Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(20, 16, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(20, 16, 0, 0),
                             child: Text(
                               'Compte',
                               style: TextStyle(
@@ -210,7 +210,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                           if (_user != null) ...{
                             const Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
+                                  EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
                               child: Text(
                                 'Avancé',
                                 style: TextStyle(
@@ -255,7 +255,8 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     style: TextStyle(color: Colors.redAccent)),
                               ),
                             ),
-                          } else ...{},
+                          } else
+                            ...{},
                         ],
                       ),
                     ],
@@ -387,7 +388,7 @@ showAlertDialog(BuildContext context) async {
     child: const Text('Oui, je suis sûr',
         style: TextStyle(color: Colors.redAccent)),
     onPressed: () async {
-      if (globals.userID != null) {
+      if (globals.userID == null) {
         final requestBaseUrl = AppUrl.baseUrl;
 
         String url = '$requestBaseUrl/auth/deleteAccount/${globals.userID}';
