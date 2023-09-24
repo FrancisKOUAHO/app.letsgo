@@ -3,8 +3,6 @@ import Flutter
 import GoogleMaps
 import flutter_local_notifications
 
-
-
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
   override func application(

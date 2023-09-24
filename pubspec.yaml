@@ -92,6 +92,7 @@ dependencies:
   image_cropper: ^3.0.2
   image: ^3.3.0
   intl_phone_field: ^3.2.0
+  file_picker: ^5.5.0
 
 dev_dependencies:
   flutter_test:
@@ -130,7 +131,6 @@ flutter:
     - assets/icons/share.svg
     - assets/icons/heart.svg
     - assets/icons/comment.svg
-    - assets/icons/icon/
     - assets/images/
     - assets/images/disc_icon.png
     - assets/images/photo-5.png

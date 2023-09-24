@@ -69,12 +69,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   children: [
                     IconButton(
                       onPressed: _determinePosition,
-                      icon: Image(
-                        image: const AssetImage(
-                            'assets/icons/icon/marker_solid.png'),
-                        width: MediaQuery.of(context).size.height * 0.025,
-                        color: LetsGoTheme.black,
-                      ),
+                      icon: Icon(Icons.location_on,
+                          color: LetsGoTheme.black,
+                          size: MediaQuery.of(context).size.height * 0.025),
                     ),
                     Text(
                       globals.currentAddress ??
