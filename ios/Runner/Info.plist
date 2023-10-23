@@ -75,9 +75,7 @@
           <key>NSAllowsArbitraryLoads</key><true/>
      </dict>
     <key>NSCameraUsageDescription</key>
-    <string>This app needs access to camera when used</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>This app needs access to microphone when used</string>
+    <string>This app requires access to the camera to work. because users must post photos of activities</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 </dict>
