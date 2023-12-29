@@ -8,6 +8,8 @@ import 'package:LetsGo/provider/auth_provider.dart';
 import 'package:LetsGo/views/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'package:plausible_analytics/plausible_analytics.dart';
+
 import 'constants/url.dart';
 import 'database/db_provider.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -16,6 +18,9 @@ import 'package:http/http.dart' as http;
 
 IO.Socket socket = IO.io(AppUrl.baseUrlSocket,
     IO.OptionBuilder().setTransports(['websocket']).build());
+
+String analyticsUrl = 'https://plausible.io';
+const String analyticsName = 'letsgoeurope.fr';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +32,19 @@ Future<void> main() async {
   });
   socket.onDisconnect((_) => print('disconnect'));
   socket.on('fromServer', (_) => print(_));
+
+  Plausible plausible = Plausible(analyticsUrl, analyticsName);
+  // Send goal
+  plausible.event(name: 'Device', props: {
+    'app_version': 'v1.0.0',
+    'app_platform': 'mobile',
+    'app_locale': 'fr-FR',
+  });
+
+  plausible.event(name: "settings_page");
+
+  plausible.event();
+
   runApp(const MyApp());
 }
 
