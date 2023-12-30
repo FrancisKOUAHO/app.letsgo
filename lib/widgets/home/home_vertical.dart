@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,7 @@ import 'package:LetsGo/models/activity.model.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../common/liste_categories.dart';
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../theme/LetsGo_theme.dart';
 import '../../views/event/event_screen.dart';
 import '../loader/loader.dart';

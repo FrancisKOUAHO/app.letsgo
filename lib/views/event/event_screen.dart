@@ -11,7 +11,7 @@ import 'package:LetsGo/views/itinerary/itinerary.dart';
 import 'package:LetsGo/views/detail/detail.dart';
 import 'package:LetsGo/globals.dart' as globals;
 
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../theme/size-config-flutter.dart';
 import '../../widgets/custom_app_bar/custom_event_appbar.dart';
 

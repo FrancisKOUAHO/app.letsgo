@@ -4,7 +4,7 @@ import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:LetsGo/globals.dart' as globals;
 import 'package:LetsGo/views/attendees/attendees.dart';
 
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../theme/LetsGo_theme.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 

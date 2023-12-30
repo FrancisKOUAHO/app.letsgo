@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,11 +9,9 @@ import 'package:http/http.dart' as http;
 import 'package:LetsGo/globals.dart' as globals;
 import 'package:LetsGo/widgets/notification_badge.dart';
 
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../database/db_provider.dart';
 import '../../theme/LetsGo_theme.dart';
-import '../../views/profil/profil_screen.dart';
-import '../loader/loader.dart';
 
 class CustomAppBar extends StatefulWidget {
   const CustomAppBar({Key? key}) : super(key: key);

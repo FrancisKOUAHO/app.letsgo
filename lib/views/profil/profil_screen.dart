@@ -1,12 +1,11 @@
 import 'package:LetsGo/views/home/home.dart';
 import 'package:LetsGo/views/login/sign_in.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:LetsGo/globals.dart' as globals;
 
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../database/db_provider.dart';
 import '../../theme/LetsGo_theme.dart';
 import '../../utils/routers.dart';

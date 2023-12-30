@@ -6,7 +6,7 @@ import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../theme/LetsGo_theme.dart';
 import '../../utils/snack_message.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar_summary.dart';
@@ -144,7 +144,6 @@ class _AttendeesState extends State<Attendees> {
                               ),
                             ),
                             onChanged: (value) {
-                              // Validez la saisie du numéro de téléphone et mettez à jour isValidInputPhone
                               if (value.isNotEmpty) {
                                 setState(() {
                                   globals.isValidInputEmail = true;
@@ -175,7 +174,6 @@ class _AttendeesState extends State<Attendees> {
                             languageCode: 'fr',
                             controller: _phoneController,
                             onChanged: (value) {
-                              // Validez la saisie du numéro de téléphone et mettez à jour isValidInputPhone
                               if (value.completeNumber.length == 12) {
                                 setState(() {
                                   globals.isValidInputPhone = true;

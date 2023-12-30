@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../constants/url.dart';
+import '../config/url.dart';
 import '../database/db_provider.dart';
 import '../utils/routers.dart';
 import '../utils/snack_message.dart';

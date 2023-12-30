@@ -7,9 +7,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:LetsGo/theme/LetsGo_theme.dart';
 
-import '../../constants/url.dart';
-import '../../views/event/event_screen.dart';
-import '../../views/login/sign_in.dart';
+import '../../config/url.dart';
 
 class PubOne extends StatefulWidget {
   const PubOne({Key? key}) : super(key: key);

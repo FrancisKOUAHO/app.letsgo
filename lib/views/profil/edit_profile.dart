@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:LetsGo/globals.dart' as globals;
 
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../database/db_provider.dart';
 import '../../utils/snack_message.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';

@@ -1,13 +1,11 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:LetsGo/globals.dart' as globals;
 
-import '../../constants/url.dart';
-import '../../database/db_provider.dart';
+import '../../config/url.dart';
 import '../../models/reservation.model.dart';
 import '../ticket/ticket.dart';
 

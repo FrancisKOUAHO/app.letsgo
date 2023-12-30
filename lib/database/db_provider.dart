@@ -1,10 +1,9 @@
 import 'dart:convert';
-import 'package:LetsGo/views/profil/profil_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:LetsGo/globals.dart' as globals;
-import '../constants/url.dart';
+import '../config/url.dart';
 import '../utils/routers.dart';
 import 'package:LetsGo/views/home/home_screen.dart';
 

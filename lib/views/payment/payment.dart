@@ -5,7 +5,7 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:LetsGo/globals.dart' as globals;
 import 'package:http/http.dart' as http;
 
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../database/db_provider.dart';
 import '../../theme/LetsGo_theme.dart';
 import '../../utils/routers.dart';

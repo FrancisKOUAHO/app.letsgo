@@ -4,7 +4,7 @@ import 'package:LetsGo/models/activity.model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 
 class Itinerary extends StatefulWidget {

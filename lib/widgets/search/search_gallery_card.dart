@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:LetsGo/models/Category.model.dart';
 import 'package:skeletons/skeletons.dart';
 
-import '../../constants/url.dart';
+import '../../config/url.dart';
 
 class SearchGalleryCard extends StatefulWidget {
   const SearchGalleryCard({Key? key}) : super(key: key);

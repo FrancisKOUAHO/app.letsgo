@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:LetsGo/widgets/skeleton/list_view_small_cards.dart';
 
 import '../../common/liste_categories.dart';
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../models/activity.model.dart';
 import '../../theme/LetsGo_theme.dart';
 import '../../views/event/event_screen.dart';

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../models/Category.model.dart';
 import '../../theme/LetsGo_theme.dart';
 

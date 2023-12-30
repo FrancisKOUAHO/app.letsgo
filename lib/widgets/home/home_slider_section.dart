@@ -7,9 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:LetsGo/models/activity.model.dart';
 import 'package:LetsGo/widgets/skeleton/list_view_cards.dart';
 
-import '../../constants/url.dart';
+import '../../config/url.dart';
 import '../../theme/LetsGo_theme.dart';
-import '../../utils/snack_message.dart';
 import '../../views/event/event_screen.dart';
 import '../loader/loader.dart';
 
