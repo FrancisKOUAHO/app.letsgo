@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:LetsGo/views/home/home.dart';
-import '../../theme/LetsGo_theme.dart';
 import '../booking/list_booking.dart';
 import '../favorite/favorite_screen.dart';
 import '../profil/profil_screen.dart';
