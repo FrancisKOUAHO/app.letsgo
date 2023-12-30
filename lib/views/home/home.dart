@@ -209,9 +209,8 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16, 30, 0, 0),
                 child: Text(
-                  'Nos recommendations ❤️',
-                  style: LetsGoTheme.subTitle,
-                ),
+                  'Nos recommendations',
+                  style: LetsGoTheme.subTitle,                ),
               ),
               const HomeSliderSection(),
               Padding(
