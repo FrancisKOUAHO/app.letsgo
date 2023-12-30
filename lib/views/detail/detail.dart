@@ -56,7 +56,6 @@ class _DetailState extends State<Detail> {
         padding: const EdgeInsets.fromLTRB(0, 11, 0, 0),
         child: Container(
           width: double.infinity,
-          // height: MediaQuery.of(context).size.height * 0.87,
           decoration: const BoxDecoration(
             color: Colors.white,
             boxShadow: [
@@ -131,13 +130,13 @@ class _DetailState extends State<Detail> {
                                     Padding(
                                       padding:
                                           const EdgeInsetsDirectional.fromSTEB(
-                                              0, 5, 0, 0),
+                                              0, 10, 0, 0),
                                       child: Text(
                                         widget.activity.address ??
                                             'Adresse non renseignée',
                                         style: const TextStyle(
                                           color: Color(0xFF57636C),
-                                          fontSize: 16,
+                                          fontSize: 13,
                                           fontWeight: FontWeight.w300,
                                         ),
                                       ),
@@ -178,7 +177,7 @@ class _DetailState extends State<Detail> {
                                   Text(
                                     'Heure de la réservation',
                                     style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -212,7 +211,7 @@ class _DetailState extends State<Detail> {
                                         child: Text(
                                           choiceTime ?? 'Choisissez une heure',
                                           style: TextStyle(
-                                              fontSize: 16.0,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.normal,
                                               color: LetsGoTheme.black),
                                         ))
@@ -238,14 +237,14 @@ class _DetailState extends State<Detail> {
                                   const Text(
                                     'Billets adultes ',
                                     style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                   Text(
                                     '(${widget.activity.price!}€/pers)',
                                     style: const TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -279,7 +278,7 @@ class _DetailState extends State<Detail> {
                                         child: Text(
                                           '${globals.nbAdult}',
                                           style: TextStyle(
-                                              fontSize: 16.0,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.normal,
                                               color: LetsGoTheme.black),
                                         ))

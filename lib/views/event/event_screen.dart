@@ -130,8 +130,8 @@ class _EventScreenState extends State<EventScreen> {
                                           style: TextStyle(
                                             fontFamily: 'Poppins',
                                             color: LetsGoTheme.main,
-                                            fontSize: 27,
-                                            fontWeight: FontWeight.w600,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w700,
                                           ),
                                         ),
                                       ),
@@ -168,7 +168,7 @@ class _EventScreenState extends State<EventScreen> {
                                             style: const TextStyle(
                                               fontFamily: 'Poppins',
                                               color: Color(0xFF57636C),
-                                              fontSize: 14,
+                                              fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),
                                           ),
@@ -281,7 +281,7 @@ class _EventScreenState extends State<EventScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      210, 185, 0, 0),
+                                      210, 185, 15, 0),
                                   child: ElevatedButton(
                                     onPressed: () {
                                       Navigator.push(
@@ -294,8 +294,7 @@ class _EventScreenState extends State<EventScreen> {
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.white,
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                            8), // <-- Radius
+                                        borderRadius: BorderRadius.circular(8),
                                       ),
                                     ),
                                     child: const Text(
@@ -303,7 +302,7 @@ class _EventScreenState extends State<EventScreen> {
                                       style: TextStyle(
                                         fontFamily: 'Poppins',
                                         color: Color(0xff4376FF),
-                                        fontSize: 16,
+                                        fontSize: 13,
                                         fontWeight: FontWeight.normal,
                                       ),
                                     ),
