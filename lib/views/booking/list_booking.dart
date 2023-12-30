@@ -45,9 +45,9 @@ class _ListBookingState extends State<ListBooking>
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: 40),
                 SizedBox(
-                  width: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
                   child: Column(
                     children: [
                       Padding(
@@ -66,13 +66,16 @@ class _ListBookingState extends State<ListBooking>
                             Tab(
                               child: Text(
                                 'À venir',
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             Tab(
                               child: Text(
                                 'Passée',
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ],

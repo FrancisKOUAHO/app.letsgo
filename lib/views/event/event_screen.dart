@@ -327,6 +327,7 @@ class _EventScreenState extends State<EventScreen> {
                             const SizedBox(height: 10),
                             DatePicker(
                               DateTime.now(),
+                              height: MediaQuery.of(context).size.height * 0.11,
                               initialSelectedDate: DateTime.now(),
                               selectionColor: LetsGoTheme.main,
                               deactivatedColor: Colors.grey,
@@ -335,7 +336,6 @@ class _EventScreenState extends State<EventScreen> {
                               activeDates: isActiveDate,
                               locale: 'fr_FR',
                               onDateChange: (date) {
-                                // New date selected
                                 setState(() {
                                   isLoading = true;
                                   globals.selectedDate = date;
@@ -348,7 +348,7 @@ class _EventScreenState extends State<EventScreen> {
                                 });
                               },
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 20),
                             isLoading == false
                                 ? Stack(
                                     children: [

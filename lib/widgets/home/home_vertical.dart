@@ -318,7 +318,7 @@ class _HomeVerticalState extends State<HomeVertical> {
                             ),
                             SizedBox(
                               width: double.infinity,
-                              height: 42,
+                              height: MediaQuery.of(context).size.height * 0.07,
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.end,

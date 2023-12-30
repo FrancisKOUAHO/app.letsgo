@@ -55,6 +55,7 @@ class _HomeCategoriesFilterState extends State<HomeCategoriesFilter> {
                   fontFamily: 'Outfit',
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
+                  color: Colors.white,
                 ),
               ),
             ),

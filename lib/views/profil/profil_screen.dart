@@ -45,10 +45,6 @@ class _ProfilScreenState extends State<ProfilScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
-    print('user: $_user');
-
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -59,7 +55,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     const SizedBox(
-                      height: 10,
+                      height: 40,
                     ),
                     if (_user != null) ...{
                       Column(
@@ -81,14 +77,135 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0, 10, 0, 0),
                             child: Text(
-                              globals.currentAddress ??
-                                  '${globals.currentAddress?.substring(0, 10) ?? ''}...',
+                              globals.currentAddress,
                               style: const TextStyle(
                                 fontFamily: 'Poppins',
                                 color: Color(0xBA777777),
                                 fontWeight: FontWeight.normal,
                                 fontSize: 16,
                               ),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(
+                                left: 10, top: 25, right: 10),
+                            child: Column(
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 16, 0, 0),
+                                      child: Text(
+                                        'Compte',
+                                        style: TextStyle(
+                                          fontFamily: 'Outfit',
+                                          color: Color(0xFF14181B),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              20, 10, 20, 0),
+                                      child: Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.1),
+                                              spreadRadius: 1,
+                                              blurRadius: 2,
+                                            ),
+                                          ],
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(20, 10, 20, 10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              if (_user != null) ...{
+                                                buildAccountOptionRow(context,
+                                                    'Paramètres du compte'),
+                                                const Divider(thickness: 1),
+                                              },
+                                              buildAccountOptionRow(
+                                                  context, 'Social'),
+                                              const Divider(thickness: 1),
+                                              buildAccountOptionRow(
+                                                  context, 'Langue'),
+                                              const Divider(thickness: 1),
+                                              buildAccountOptionRow(context,
+                                                  'Vie privée et sécurité'),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    if (_user != null) ...{
+                                      const Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            20, 30, 0, 0),
+                                        child: Text(
+                                          'Avancé',
+                                          style: TextStyle(
+                                            fontFamily: 'Outfit',
+                                            color: Color(0xFF14181B),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(20, 10, 20, 0),
+                                        child: Container(
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(20, 10, 20, 10),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                buildNotificationOptionRow(
+                                                    'Supprimer son compte'),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 30,
+                                      ),
+                                      Center(
+                                        child: TextButton(
+                                          onPressed: () {
+                                            DatabaseProvider().logOut(context);
+                                          },
+                                          child: const Text('Se déconnecter',
+                                              style: TextStyle(
+                                                  color: Colors.redAccent)),
+                                        ),
+                                      ),
+                                    } else
+                                      ...{},
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -98,14 +215,14 @@ class _ProfilScreenState extends State<ProfilScreen> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           const SizedBox(
-                            height: 10,
+                            height: 50,
                           ),
                           const Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    25, 10, 0, 25),
+                                    35, 35, 35, 35),
                                 child: Text(
                                   'Accédez à votre réservation depuis n\'importe quel appareil',
                                   style: TextStyle(
@@ -117,7 +234,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    25, 10, 0, 25),
+                                    30, 30, 25, 30),
                                 child: Text(
                                   'Inscrivez-vous, importez vos réservations existantes, ajoutez des activités à vos favoris et passez commande plus rapidement grâce aux coordonnées enregistrées.',
                                   style: TextStyle(
@@ -144,120 +261,6 @@ class _ProfilScreenState extends State<ProfilScreen> {
                       ),
                     },
                   ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(left: 10, top: 25, right: 10),
-                  child: Column(
-                    children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(20, 16, 0, 0),
-                            child: Text(
-                              'Compte',
-                              style: TextStyle(
-                                fontFamily: 'Outfit',
-                                color: Color(0xFF14181B),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20, 10, 20, 0),
-                            child: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(12),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.1),
-                                    spreadRadius: 1,
-                                    blurRadius: 2,
-                                  ),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    20, 10, 20, 10),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    if (_user != null) ...{
-                                      buildAccountOptionRow(
-                                          context, 'Paramètres du compte'),
-                                      const Divider(thickness: 1),
-                                    },
-                                    buildAccountOptionRow(context, 'Social'),
-                                    const Divider(thickness: 1),
-                                    buildAccountOptionRow(context, 'Langue'),
-                                    const Divider(thickness: 1),
-                                    buildAccountOptionRow(
-                                        context, 'Vie privée et sécurité'),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          if (_user != null) ...{
-                            const Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
-                              child: Text(
-                                'Avancé',
-                                style: TextStyle(
-                                  fontFamily: 'Outfit',
-                                  color: Color(0xFF14181B),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  20, 10, 20, 0),
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      20, 10, 20, 10),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      buildNotificationOptionRow(
-                                          'Supprimer son compte'),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            Center(
-                              child: TextButton(
-                                onPressed: () {
-                                  DatabaseProvider().logOut(context);
-                                },
-                                child: const Text('Se déconnecter',
-                                    style: TextStyle(color: Colors.redAccent)),
-                              ),
-                            ),
-                          } else
-                            ...{},
-                        ],
-                      ),
-                    ],
-                  ),
                 ),
               ],
             ),

@@ -56,7 +56,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late final LocalNotificationService service;
+  //late final LocalNotificationService service;
 
   dynamic _user;
 
@@ -69,17 +69,17 @@ class _MyAppState extends State<MyApp> {
               print('send notification all users: $data'),
               if (data != null)
                 {
-                  service.showNotificationWithPayload(
+                  /*service.showNotificationWithPayload(
                     id: 0,
                     title: 'LetsGo',
                     body: 'Vous avez un nouveau message',
                     payload: 'payload navigation',
-                  )
+                  )*/
                 }
             });
-    service = LocalNotificationService();
-    service.intialize();
-    listenToNotification();
+    //service = LocalNotificationService();
+    //service.intialize();
+    //listenToNotification();
     getReservationList();
     super.initState();
   }
@@ -107,10 +107,10 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  void listenToNotification() =>
-      service.onNotificationClick.stream.listen(onNoticationListener);
+/* void listenToNotification() =>
+      service.onNotificationClick.stream.listen(onNoticationListener);*/
 
-  void onNoticationListener(String? payload) {
+/*void onNoticationListener(String? payload) {
     if (payload != null && payload.isNotEmpty) {
       print('payload $payload');
       Navigator.push(
@@ -118,5 +118,5 @@ class _MyAppState extends State<MyApp> {
         MaterialPageRoute(builder: (context) => const SearchScreen()),
       );
     }
-  }
+  }*/
 }
