@@ -76,14 +76,14 @@ class _ProfilScreenState extends State<ProfilScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0, 10, 0, 0),
+                                0, 0, 0, 0),
                             child: Text(
-                              globals.currentAddress,
-                              style: const TextStyle(
+                              'kouahofrancis@gmail.com',
+                              style: TextStyle(
                                 fontFamily: 'Poppins',
-                                color: Color(0xBA777777),
+                                color: LetsGoTheme.main,
                                 fontWeight: FontWeight.normal,
-                                fontSize: 16,
+                                fontSize: 12,
                               ),
                             ),
                           ),
@@ -101,6 +101,156 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                           20, 16, 0, 0),
                                       child: Text(
                                         'COMPTE',
+                                        style: TextStyle(
+                                          fontFamily: 'Outfit',
+                                          color: Color(0xFF292929),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              20, 10, 20, 0),
+                                      child: Container(
+                                        width: double.infinity,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.0654,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.1),
+                                              spreadRadius: 1,
+                                              blurRadius: 2,
+                                            ),
+                                          ],
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(20, 10, 20, 20),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              if (_user != null) ...{
+                                                buildAccountOptionRow(context,
+                                                    'Informations personnelles'),
+                                              },
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 16, 0, 0),
+                                      child: Text(
+                                        'PARAMÈTRES',
+                                        style: TextStyle(
+                                          fontFamily: 'Outfit',
+                                          color: Color(0xFF292929),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              20, 10, 20, 0),
+                                      child: Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.1),
+                                              spreadRadius: 1,
+                                              blurRadius: 2,
+                                            ),
+                                          ],
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(20, 10, 20, 10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              if (_user != null) ...{
+                                                buildAccountOptionRow(
+                                                    context, 'Ville actuelle'),
+                                                const Divider(thickness: 1),
+                                                buildAccountOptionRow(context,
+                                                    'Gestion des notifications'),
+                                              },
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 16, 0, 0),
+                                      child: Text(
+                                        'SUPPORT',
+                                        style: TextStyle(
+                                          fontFamily: 'Outfit',
+                                          color: Color(0xFF292929),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              20, 10, 20, 0),
+                                      child: Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.1),
+                                              spreadRadius: 1,
+                                              blurRadius: 2,
+                                            ),
+                                          ],
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(20, 10, 20, 10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              if (_user != null) ...{
+                                                buildAccountOptionRow(
+                                                    context, 'Centre d\'aide'),
+                                                const Divider(thickness: 1),
+                                                buildAccountOptionRow(context,
+                                                    'Suggérer des améliorations'),
+                                              },
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20, 16, 0, 0),
+                                      child: Text(
+                                        'SUPPORT',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
                                           color: Color(0xFF292929),
@@ -136,17 +286,8 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                             children: [
                                               if (_user != null) ...{
                                                 buildAccountOptionRow(context,
-                                                    'Paramètres du compte'),
-                                                const Divider(thickness: 1),
+                                                    'Termes d\'utilisation et confidentialité'),
                                               },
-                                              buildAccountOptionRow(
-                                                  context, 'Social'),
-                                              const Divider(thickness: 1),
-                                              buildAccountOptionRow(
-                                                  context, 'Langue'),
-                                              const Divider(thickness: 1),
-                                              buildAccountOptionRow(context,
-                                                  'Vie privée et sécurité'),
                                             ],
                                           ),
                                         ),

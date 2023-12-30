@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
             rippleColor: Colors.grey[300]!,
             hoverColor: Colors.grey[100]!,
             gap: 8,
-            activeColor: LetsGoTheme.main,
+            activeColor: Colors.black,
             iconSize: 28,
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             duration: const Duration(milliseconds: 400),
