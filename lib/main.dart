@@ -13,8 +13,11 @@ import 'package:http/http.dart' as http;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  /*Stripe.publishableKey =
+      'pk_test_51MdvGWEkovoeS1CWWQk30YnyudXkuXtJ4l1n3CKDmDAn1E5hG66vzrQQR9vqBssaEook290zHYOLAFTydDzm8ODw00UO7ivtC8';*/
+
   Stripe.publishableKey =
-      'pk_test_51MdvGWEkovoeS1CWWQk30YnyudXkuXtJ4l1n3CKDmDAn1E5hG66vzrQQR9vqBssaEook290zHYOLAFTydDzm8ODw00UO7ivtC8';
+      'pk_live_51MdvGWEkovoeS1CWUCORErQT2jSzP99IG1psfPDIZq7KwAKefiDztQuUsaa3fYDz5TiKO7v5VtSbfAQTDZ36MIxF00gngPuV0x';
   await Stripe.instance.applySettings();
 
   runApp(const MyApp());
