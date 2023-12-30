@@ -13,7 +13,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     navigate();
@@ -48,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  'LetsGo v1.0.6(1)',
+                  'LetsGo v1.0.6',
                   style: TextStyle(
                       fontFamily: 'Lato',
                       fontSize: 15,
