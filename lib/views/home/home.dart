@@ -181,31 +181,6 @@ class _HomeState extends State<Home> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const FilterScreen()),
-                                      );
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Icon(
-                                        Icons.menu_outlined,
-                                        color: LetsGoTheme.black,
-                                      ),
-                                    ),
-                                  ),
                                 ],
                               )
                             ],

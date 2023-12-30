@@ -8,6 +8,7 @@ import 'package:LetsGo/globals.dart' as globals;
 
 import '../../constants/url.dart';
 import '../../database/db_provider.dart';
+import '../../theme/LetsGo_theme.dart';
 import '../../utils/routers.dart';
 import 'edit_profile.dart';
 
@@ -99,11 +100,11 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           20, 16, 0, 0),
                                       child: Text(
-                                        'Compte',
+                                        'COMPTE',
                                         style: TextStyle(
                                           fontFamily: 'Outfit',
-                                          color: Color(0xFF14181B),
-                                          fontSize: 16,
+                                          color: Color(0xFF292929),
+                                          fontSize: 11,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -117,7 +118,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
-                                              BorderRadius.circular(12),
+                                              BorderRadius.circular(8),
                                           boxShadow: [
                                             BoxShadow(
                                               color:
@@ -152,19 +153,6 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                       ),
                                     ),
                                     if (_user != null) ...{
-                                      const Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 30, 0, 0),
-                                        child: Text(
-                                          'Avancé',
-                                          style: TextStyle(
-                                            fontFamily: 'Outfit',
-                                            color: Color(0xFF14181B),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional
                                             .fromSTEB(20, 10, 20, 0),
@@ -177,28 +165,110 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                           ),
                                           child: Padding(
                                             padding: const EdgeInsetsDirectional
-                                                .fromSTEB(20, 10, 20, 10),
+                                                .fromSTEB(0, 10, 0, 10),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                buildNotificationOptionRow(
-                                                    'Supprimer son compte'),
+                                                SizedBox(
+                                                  height: 45,
+                                                  width: double.infinity,
+                                                  child: ElevatedButton(
+                                                    style: ButtonStyle(
+                                                      backgroundColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                        Colors.redAccent,
+                                                      ),
+                                                      shape:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                        const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                            Radius.circular(8),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                      'Supprimer son compte',
+                                                      style: TextStyle(
+                                                        fontFamily: 'Late',
+                                                        fontSize: 14,
+                                                        color:
+                                                            LetsGoTheme.white,
+                                                      ),
+                                                    ),
+                                                    onPressed: () {
+                                                      showAlertDialog(context);
+                                                    },
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
                                         ),
                                       ),
-                                      const SizedBox(
-                                        height: 30,
-                                      ),
                                       Center(
-                                        child: TextButton(
-                                          onPressed: () {
-                                            DatabaseProvider().logOut(context);
-                                          },
-                                          child: const Text('Se déconnecter',
-                                              style: TextStyle(
-                                                  color: Colors.redAccent)),
+                                        child: Padding(
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(20, 0, 20, 0),
+                                          child: Container(
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(0, 10, 0, 10),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 45,
+                                                    width: double.infinity,
+                                                    child: ElevatedButton(
+                                                      style: ButtonStyle(
+                                                        backgroundColor:
+                                                            MaterialStateProperty
+                                                                .all(
+                                                          const Color(
+                                                              0xFFF1F1F1),
+                                                        ),
+                                                        shape:
+                                                            MaterialStateProperty
+                                                                .all(
+                                                          const RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(
+                                                              Radius.circular(
+                                                                  8),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      child: const Text(
+                                                        'Déconnexion',
+                                                        style: TextStyle(
+                                                          fontFamily: 'Late',
+                                                          fontSize: 14,
+                                                          color: Colors.red,
+                                                        ),
+                                                      ),
+                                                      onPressed: () {
+                                                        DatabaseProvider()
+                                                            .logOut(context);
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     } else
@@ -278,7 +348,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
       },
       child: Container(
         width: double.infinity,
-        height: 45,
+        height: MediaQuery.of(context).size.height * 0.03,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(0),
@@ -301,7 +371,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                       style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w300,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -312,64 +382,11 @@ class _ProfilScreenState extends State<ProfilScreen> {
               child: Icon(
                 Icons.arrow_forward_ios,
                 color: Colors.black,
-                size: 18,
+                size: 16,
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Container buildNotificationOptionRow(String title) {
-    return Container(
-      width: double.infinity,
-      height: 45,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(0),
-        shape: BoxShape.rectangle,
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width * 0.56,
-            decoration: const BoxDecoration(),
-            child: Container(
-              padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.scale(
-            scale: 0.7,
-            child: CupertinoSwitch(
-              activeColor: CupertinoColors.activeBlue,
-              value: isActive,
-              onChanged: (bool? val) {
-                setState(() {
-                  isActive = val!;
-                });
-                if (val!) {
-                  showAlertDialog(context);
-                }
-              },
-            ),
-          ),
-        ],
       ),
     );
   }
