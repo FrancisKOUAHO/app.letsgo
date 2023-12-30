@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     if (_user != null) {
-      globals.userID =  '${_user['id']}';
+      globals.userID = '${_user['id']}';
     }
 
     return Scaffold(
