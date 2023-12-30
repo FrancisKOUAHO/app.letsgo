@@ -40,42 +40,39 @@ class _ListBookingState extends State<ListBooking>
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                const SizedBox(height: 40),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(0),
                         child: TabBar(
                           unselectedLabelColor: LetsGoTheme.black,
-                          labelColor: LetsGoTheme.white,
-                          indicatorColor: Colors.white,
-                          indicatorWeight: 2,
-                          indicator: BoxDecoration(
-                            color: LetsGoTheme.main,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          labelColor: LetsGoTheme.main,
+                          dividerColor: LetsGoTheme.white,
+                          indicatorColor: LetsGoTheme.main,
                           controller: tabController,
                           tabs: const [
                             Tab(
                               child: Text(
                                 'À venir',
                                 style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
                             Tab(
                               child: Text(
                                 'Passée',
-                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ],

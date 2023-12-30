@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:LetsGo/views/home/home.dart';
-import 'package:line_icons/line_icons.dart';
+import '../../theme/LetsGo_theme.dart';
 import '../booking/list_booking.dart';
 import '../favorite/favorite_screen.dart';
 import '../profil/profil_screen.dart';
@@ -59,33 +59,29 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
           child: GNav(
             rippleColor: Colors.grey[300]!,
             hoverColor: Colors.grey[100]!,
             gap: 8,
-            activeColor: Colors.black,
+            activeColor: LetsGoTheme.main,
             iconSize: 28,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             duration: const Duration(milliseconds: 400),
             tabBackgroundColor: Colors.grey[100]!,
             color: Colors.white,
             tabs: const [
               GButton(
-                icon: LineIcons.home,
+                icon: Icons.explore_outlined,
               ),
               GButton(
-                icon: LineIcons.search,
+                icon: Icons.search_outlined,
               ),
+              GButton(icon: Icons.favorite_border_outlined),
               GButton(
-                icon: LineIcons.heart,
+                icon: Icons.calendar_today_outlined,
               ),
-              GButton(
-                icon: LineIcons.alternateTicket,
-              ),
-              GButton(
-                icon: Icons.supervisor_account_outlined,
-              )
+              GButton(icon: Icons.person_outline_outlined)
             ],
             selectedIndex: _selectedIndex,
             onTabChange: (index) {
