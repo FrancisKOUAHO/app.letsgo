@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  'LetsGo v1.0.6',
+                  'Letsgo v1.0.6',
                   style: TextStyle(
                       fontFamily: 'Lato',
                       fontSize: 15,

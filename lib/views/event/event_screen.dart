@@ -59,6 +59,7 @@ class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: const PreferredSize(
@@ -520,63 +521,121 @@ class _EventScreenState extends State<EventScreen> {
                                                           ),
                                                         ],
                                                       ),
-                                                      SizedBox(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.3,
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.1,
-                                                        child: ElevatedButton(
-                                                          onPressed: () {
-                                                            Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                builder: (context) =>
-                                                                    Detail(
-                                                                        activity:
-                                                                            widget.activity),
+                                                      isActiveDate.contains(
+                                                              globals
+                                                                  .selectedDate)
+                                                          ? SizedBox(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.3,
+                                                              height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.1,
+                                                              child:
+                                                                  ElevatedButton(
+                                                                onPressed: () {
+                                                                  Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          Detail(
+                                                                              activity: widget.activity),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
+                                                                  shadowColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  backgroundColor:
+                                                                      LetsGoTheme
+                                                                          .main,
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8), // <-- Radius
+                                                                  ),
+                                                                  side:
+                                                                      const BorderSide(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    width: 1,
+                                                                  ),
+                                                                ),
+                                                                child:
+                                                                    const Text(
+                                                                  'Réserver',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        16,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                  ),
+                                                                ),
                                                               ),
-                                                            );
-                                                          },
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            shadowColor: Colors
-                                                                .transparent,
-                                                            backgroundColor:
-                                                                LetsGoTheme
-                                                                    .main,
-                                                            shape:
-                                                                RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8), // <-- Radius
-                                                            ),
-                                                            side:
-                                                                const BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1,
-                                                            ),
-                                                          ),
-                                                          child: const Text(
-                                                            'Réserver',
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
+                                                            )
+                                                          : SizedBox(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.35,
+                                                              height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.1,
+                                                              child:
+                                                                  ElevatedButton(
+                                                                onPressed: null,
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
+                                                                  shadowColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  backgroundColor:
+                                                                      LetsGoTheme
+                                                                          .main,
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8), // <-- Radius
+                                                                  ),
+                                                                  side:
+                                                                      const BorderSide(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    width: 1,
+                                                                  ),
+                                                                ),
+                                                                child:
+                                                                    const Text(
+                                                                  'Indisponible',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        15,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            )
                                                     ],
                                                   ),
                                                 ),

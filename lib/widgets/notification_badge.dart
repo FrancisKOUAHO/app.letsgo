@@ -3,15 +3,16 @@ import 'package:icon_badge/icon_badge.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:LetsGo/globals.dart' as globals;
 
-
 import '../theme/LetsGo_theme.dart';
 import '../views/notifications/notifications.dart';
 
 class NotificationBadge extends StatefulWidget {
   final IconData? icon;
 
-  const NotificationBadge({Key? key,
-    required this.icon, required int totalNotifications,
+  const NotificationBadge({
+    Key? key,
+    required this.icon,
+    required int totalNotifications,
   }) : super(key: key);
 
   @override
@@ -38,7 +39,7 @@ class _NotificationBadgeState extends State<NotificationBadge> {
     return IconBadge(
       icon: Icon(
         widget.icon,
-        color: LetsGoTheme.black,
+        color: LetsGoTheme.main,
         size: 30,
       ),
       itemCount: _totalNotifications,

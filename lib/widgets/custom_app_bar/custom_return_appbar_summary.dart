@@ -57,7 +57,7 @@ class _CustomReturnAppBarSummaryState extends State<CustomReturnAppBarSummary> {
                   ),
                   iconSize: 20.0,
                   onPressed: () {
-                    Attendees();
+                    Navigator.of(context).pop();
                   },
                 ),
               ),

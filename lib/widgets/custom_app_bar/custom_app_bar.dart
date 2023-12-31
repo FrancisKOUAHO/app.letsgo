@@ -67,7 +67,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     IconButton(
                       onPressed: _determinePosition,
                       icon: Icon(Icons.location_on,
-                          color: LetsGoTheme.black,
+                          color: LetsGoTheme.main,
                           size: MediaQuery.of(context).size.height * 0.025),
                     ),
                     Text(
