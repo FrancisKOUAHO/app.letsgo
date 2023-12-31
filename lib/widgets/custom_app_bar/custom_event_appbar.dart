@@ -25,7 +25,7 @@ class _CustomEventAppBarState extends State<CustomEventAppBar> {
             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
             child: Card(
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              color: const Color(0x3A000000),
+              color: LetsGoTheme.main,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14),
               ),
@@ -63,7 +63,7 @@ class _CustomEventAppBarState extends State<CustomEventAppBar> {
               padding: const EdgeInsets.fromLTRB(0, 0, 27, 0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: const Color(0x3A000000),
+                color: LetsGoTheme.main,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),
                 ),

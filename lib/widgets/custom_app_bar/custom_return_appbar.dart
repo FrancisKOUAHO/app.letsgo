@@ -56,10 +56,7 @@ class _CustomReturnAppBarState extends State<CustomReturnAppBar> {
                   ),
                   iconSize: 20.0,
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
+                    Navigator.of(context).pop();
                   },
                 ),
               ),
