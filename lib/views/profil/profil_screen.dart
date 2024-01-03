@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:LetsGo/globals.dart' as globals;
+import 'package:dice_bear/dice_bear.dart';
 
 import '../../config/url.dart';
 import '../../database/db_provider.dart';
@@ -25,6 +26,19 @@ class _ProfilScreenState extends State<ProfilScreen> {
 
   dynamic _user;
 
+  Avatar? _avatar;
+
+  DiceBearSprite sprite = DiceBearSprite.adventurer;
+  String? seed;
+  Color? background;
+  int radius = 50;
+  int? size;
+  int scale = 100;
+  bool flip = false;
+  int rotate = 0;
+  int translateX = 0;
+  int translateY = 0;
+
   @override
   void initState() {
     super.initState();
@@ -36,11 +50,28 @@ class _ProfilScreenState extends State<ProfilScreen> {
         });
       }
     });
+    _buildAvatar();
   }
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _buildAvatar() {
+    setState(() {
+      _avatar = DiceBearBuilder(
+        seed: 'Francis',
+        sprite: sprite,
+        radius: radius,
+        size: size,
+        scale: scale,
+        flip: flip,
+        rotate: rotate,
+        translateX: translateX,
+        translateY: translateY,
+      ).build();
+    });
   }
 
   @override
@@ -54,21 +85,31 @@ class _ProfilScreenState extends State<ProfilScreen> {
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    const SizedBox(
-                      height: 40,
-                    ),
                     if (_user != null) ...{
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
+                          Container(
+                            width: 150,
+                            height: 150,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                            ),
+                            child: _avatar?.toImage(
+                                  width: 150,
+                                  height: 150,
+                                  clipBehavior: Clip.antiAlias,
+                                ) ??
+                                Container(),
+                          ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0, 10, 0, 0),
+                                0, 0, 0, 0),
                             child: Text(
                               _user['full_name'],
                               style: const TextStyle(
                                 fontFamily: 'Outfit',
-                                fontSize: 25,
+                                fontSize: 21,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -595,7 +636,6 @@ showAlertDialog(BuildContext context) async {
     ],
   );
 
-  // show the dialog
   showDialog(
     context: context,
     builder: (BuildContext context) {

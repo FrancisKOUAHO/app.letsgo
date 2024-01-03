@@ -200,7 +200,7 @@ class _PubTwoState extends State<PubTwo> {
             ],
           );
         } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
+          return const Text('');
         }
         return const Loader();
       },

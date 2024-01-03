@@ -192,7 +192,7 @@ class _PubOneState extends State<PubOne> {
             ],
           );
         } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
+          return const Text('');
         }
         return const CircularProgressIndicator();
       },
