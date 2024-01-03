@@ -183,11 +183,10 @@ class _EventScreenState extends State<EventScreen> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         ElevatedButton(
-                                          onPressed: () {
-                                            print('Button pressed ...');
-                                          },
+                                          onPressed: null,
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor: LetsGoTheme.main,
+                                            backgroundColor:
+                                                const Color(0xFF57636C),
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(
@@ -269,7 +268,7 @@ class _EventScreenState extends State<EventScreen> {
                                       },
                                       myLocationEnabled: false,
                                       myLocationButtonEnabled: false,
-                                      compassEnabled: false,
+                                      compassEnabled: true,
                                       zoomGesturesEnabled: true,
                                       zoomControlsEnabled: true,
                                       scrollGesturesEnabled: true,
@@ -277,35 +276,6 @@ class _EventScreenState extends State<EventScreen> {
                                           (GoogleMapController controller) {
                                         _controllerMap.complete(controller);
                                       },
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      210, 185, 15, 0),
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => Itinerary(),
-                                        ),
-                                      );
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                    child: const Text(
-                                      'Voir la map',
-                                      style: TextStyle(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xff4376FF),
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.normal,
-                                      ),
                                     ),
                                   ),
                                 ),
@@ -521,121 +491,63 @@ class _EventScreenState extends State<EventScreen> {
                                                           ),
                                                         ],
                                                       ),
-                                                      isActiveDate.contains(
-                                                              globals
-                                                                  .selectedDate)
-                                                          ? SizedBox(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.3,
-                                                              height: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.1,
-                                                              child:
-                                                                  ElevatedButton(
-                                                                onPressed: () {
-                                                                  Navigator
-                                                                      .push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                      builder: (context) =>
-                                                                          Detail(
-                                                                              activity: widget.activity),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                                style: ElevatedButton
-                                                                    .styleFrom(
-                                                                  shadowColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  backgroundColor:
-                                                                      LetsGoTheme
-                                                                          .main,
-                                                                  shape:
-                                                                      RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8), // <-- Radius
-                                                                  ),
-                                                                  side:
-                                                                      const BorderSide(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    width: 1,
-                                                                  ),
-                                                                ),
-                                                                child:
-                                                                    const Text(
-                                                                  'Réserver',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                                ),
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.3,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.1,
+                                                        child: ElevatedButton(
+                                                          onPressed: () {
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder: (context) =>
+                                                                    Detail(
+                                                                        activity:
+                                                                            widget.activity),
                                                               ),
-                                                            )
-                                                          : SizedBox(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.35,
-                                                              height: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.1,
-                                                              child:
-                                                                  ElevatedButton(
-                                                                onPressed: null,
-                                                                style: ElevatedButton
-                                                                    .styleFrom(
-                                                                  shadowColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  backgroundColor:
-                                                                      LetsGoTheme
-                                                                          .main,
-                                                                  shape:
-                                                                      RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8), // <-- Radius
-                                                                  ),
-                                                                  side:
-                                                                      const BorderSide(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    width: 1,
-                                                                  ),
-                                                                ),
-                                                                child:
-                                                                    const Text(
-                                                                  'Indisponible',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontSize:
-                                                                        15,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            )
+                                                            );
+                                                          },
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            shadowColor: Colors
+                                                                .transparent,
+                                                            backgroundColor:
+                                                                LetsGoTheme
+                                                                    .main,
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8), // <-- Radius
+                                                            ),
+                                                            side:
+                                                                const BorderSide(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              width: 1,
+                                                            ),
+                                                          ),
+                                                          child: const Text(
+                                                            'Réserver',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
                                                     ],
                                                   ),
                                                 ),
